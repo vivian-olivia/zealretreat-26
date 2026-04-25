@@ -1,0 +1,104 @@
+:root {
+    --bg-color: #FAF8F5;
+    --primary-dark: #2C4A3B;
+    --accent-orange: #D97757;
+    --accent-gold: #F4A261;
+    --text-main: #333333;
+}
+
+body {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* === MODERN UTILITIES === */
+
+.gradient-text {
+    background: linear-gradient(135deg, #D97757 0%, #F4A261 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text-green {
+    background: linear-gradient(135deg, #2C4A3B 0%, #4a7c5f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, #D97757 0%, #F4A261 100%);
+    box-shadow: 0 4px 16px rgba(217, 119, 87, 0.35);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-gradient:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 28px rgba(217, 119, 87, 0.5);
+}
+
+.section-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid currentColor;
+}
+
+/* === EXISTING FUNCTIONAL STYLES === */
+
+.checklist-item.checked {
+    text-decoration: line-through;
+    color: #9CA3AF;
+}
+.checklist-item.checked .check-box {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: white;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+.accordion-item.active .accordion-content {
+    max-height: 500px;
+    padding-bottom: 1rem;
+}
+.accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+}
+.accordion-icon {
+    transition: transform 0.3s ease;
+}
+
+.slider-track { display: flex; }
+
+body[data-lang="id"] .lang-en { display: none !important; }
+body[data-lang="en"] .lang-id { display: none !important; }
+
+.testimonial-scroll::-webkit-scrollbar { display: none; }
+.testimonial-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+.testimonial-card { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease; }
+.testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12); }
+
+section[id] { scroll-margin-top: 80px; }
