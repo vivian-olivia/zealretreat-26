@@ -2,22 +2,22 @@ function renderTestimonies() {
     const people = [
         { initial: 'A', color: '#2C4A3B', name: 'Awi', image: 'assets/awi.jpeg',
           id: '"Kalau ditanya berkesan udah jelas dari awal sampai akhir acara sangat seru apalagi pas praise and worship kicau eh kacau seruu dehh"',
-          en: '"Last year\'s retreat truly opened my eyes to what a healthy community looks like. The worship sessions were incredible!"' },
-        { initial: 'J', color: '#D97757', name: 'Jocelyn',
-          id: '"Aku datang sendirian dan pulang dengan keluarga baru. Kegiatan team-building-nya seru banget dan bikin nyaman."',
-          en: '"I came knowing no one, and left with a family. The team-building activities were super fun and engaging."' },
+          en: '"Kalau ditanya berkesan udah jelas dari awal sampai akhir acara sangat seru apalagi pas praise and worship kicau eh kacau seruu dehh"' },
+        { initial: 'J', color: '#D97757', name: 'Jocelyn', image: 'assets/jocelyn.jpeg',
+          id: '""Herald of God" retreat merupakan retreat yang menjadi escape dari rutinitas harian kita untuk fokus tentang mengasihi satu sama lain di dalam mata Tuhan. It felt like home and it made me feel like Zeal Tangerang is my home too, still is. 💛"',
+          en: '""Herald of God" retreat merupakan retreat yang menjadi escape dari rutinitas harian kita untuk fokus tentang mengasihi satu sama lain di dalam mata Tuhan. It felt like home and it made me feel like Zeal Tangerang is my home too, still is. 💛"' },
         { initial: 'E', color: '#F4A261', name: 'Elkana', image: 'assets/elkana.jpeg',
           id: '"Yang paling berkesan buat aku pas malam praise & worship, apalagi waktu saling doain di kelompok kecil rasanya kayak ada momen yang aku kangenin banget, kaya deja vu gitu. Terus games nya juga seru banget, jadi berasa balik ke masa kecil hahahah."',
-          en: '"The campfire moment on the last night changed my perspective on life. I can\'t wait for HOME this year!"' },
-        { initial: 'C', color: '#2C4A3B', name: 'Cheryl',
-          id: '"Ice breaker dan small group-nya langsung bikin aku nyaman sama semua orang dari hari pertama. Panitia kerja keras banget!"',
-          en: '"The ice breakers and small groups made me instantly comfortable with everyone from day one. The committee worked so hard!"' },
+          en: '"Yang paling berkesan buat aku pas malam praise & worship, apalagi waktu saling doain di kelompok kecil rasanya kayak ada momen yang aku kangenin banget, kaya deja vu gitu. Terus games nya juga seru banget, jadi berasa balik ke masa kecil hahahah."' },
+        { initial: 'C', color: '#2C4A3B', name: 'Cheryl', image: 'assets/cheryl.jpeg',
+          id: '"Berkesan. Mulai dr rasa aman yg aku dpt dr mentor kelompok, temen-temen baru, sharing materi dr pembicara & knowing aku ga stop setelah acara berakhir tp akan ada pertumbuhan jadi murid Yesus di campus ministry"',
+          en: '"Berkesan. Mulai dr rasa aman yg aku dpt dr mentor kelompok, temen-temen baru, sharing materi dr pembicara & knowing aku ga stop setelah acara berakhir tp akan ada pertumbuhan jadi murid Yesus di campus ministry"' },
         { initial: 'A', color: '#D97757', name: 'Abe', image: 'assets/abe.jpeg',
           id: '"Yang berkesan/membantu aku sih mungkin lebih ke aku dapet kesempatan yaa untuk mimpin grup dimana juga bentukk aku keluar dari zona nyaman untuk belajar jadi leader dalam grupp alsoo juga banyak di refresh lagii secara spiritual aku dan jadi semangat lagii"',
-          en: '"This was my first retreat and the impact was huge. I found a new direction, new friends, and grew closer to God."' },
-        { initial: 'K', color: '#1A2E24', name: 'Keiza',
-          id: '"Sesi sharing bikin aku berani cerita hal-hal yang belum pernah aku buka sebelumnya. Komunitas ini beda dari yang lain."',
-          en: '"The sharing sessions gave me courage to open up about things I\'ve never shared before. This community is unlike any other."' },
+          en: '"Yang berkesan/membantu aku sih mungkin lebih ke aku dapet kesempatan yaa untuk mimpin grup dimana juga bentukk aku keluar dari zona nyaman untuk belajar jadi leader dalam grupp alsoo juga banyak di refresh lagii secara spiritual aku dan jadi semangat lagii"' },
+        { initial: 'K', color: '#1A2E24', name: 'Keiza', image: 'assets/keiza.jpeg',
+          id: '"Jujur, bersyukur banget pernah ikut retreat campus karena aku merasa sangat di love & di welcome sama mereka :) karena waktu itu dtg dengan kondisi yang gak sepenuhnya ok, tapi brosis disana kasih aku space untuk be real & sabar dengerin ceritaku, bahkan diajak Bible Study juga."',
+          en: '"Jujur, bersyukur banget pernah ikut retreat campus karena aku merasa sangat di love & di welcome sama mereka :) karena waktu itu dtg dengan kondisi yang gak sepenuhnya ok, tapi brosis disana kasih aku space untuk be real & sabar dengerin ceritaku, bahkan diajak Bible Study juga."' },
     ];
 
     const cards = people.map(p => `
@@ -48,11 +48,10 @@ function renderTestimonies() {
     <section class="py-24 bg-[#FAF8F5]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 gsap-fade-up gsap-hide">
-                <span class="section-pill text-[#D97757] mb-5 inline-flex">&#10022; <span class="lang-id">Cerita Nyata</span><span class="lang-en">Real Stories</span></span>
-                <h2 class="font-heading text-4xl md:text-5xl font-extrabold mt-4 gradient-text">
+                <h2 class="font-heading text-4xl md:text-5xl font-extrabold mb-4 gradient-text">
                     <span class="lang-id">Apa Kata Mereka</span><span class="lang-en">What They Said</span>
                 </h2>
-                <p class="text-lg text-[#666666] max-w-2xl mx-auto mt-4 leading-relaxed">
+                <p class="text-lg text-[#666666] max-w-2xl mx-auto leading-relaxed">
                     <span class="lang-id">Dengarkan cerita nyata dari peserta retreat sebelumnya.</span>
                     <span class="lang-en">Hear real stories from past retreat participants.</span>
                 </p>
@@ -65,8 +64,8 @@ function renderTestimonies() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
                 </button>
 
-                <div id="testimonial-viewport" class="overflow-hidden mx-2 py-4">
-                    <div id="testimonial-track" class="flex gap-6 pb-2">
+                <div id="testimonial-viewport" class="mx-2 py-6" style="overflow-x: hidden; overflow-y: visible;">
+                    <div id="testimonial-track" class="flex gap-6 pb-4">
                         ${cards}
                     </div>
                 </div>

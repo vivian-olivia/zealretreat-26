@@ -4,35 +4,44 @@ function renderHistory() {
     <section id="history" class="py-24 bg-[#FAF8F5] overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 gsap-fade-up gsap-hide">
-                <span class="section-pill text-[#2C4A3B] mb-5 inline-flex">&#10022; <span class="lang-id">Kisah Kami</span><span class="lang-en">Our Story</span></span>
-                <h2 class="font-heading text-4xl md:text-5xl font-extrabold mt-4 gradient-text-green">
-                    <span class="lang-id">Event Kami Sebelumnya</span><span class="lang-en">Our Previous Event</span>
+                <h2 class="font-heading text-4xl md:text-5xl font-extrabold mb-3 gradient-text-green">
+                    <span class="lang-id">Herald of God 2024</span><span class="lang-en">Herald of God 2024</span>
                 </h2>
-                <p class="text-lg text-[#666666] mt-4 font-semibold italic">Herald of God 2024</p>
+                <p class="text-lg text-[#666666]">
+                    <span class="lang-id">Event retreat kami sebelumnya</span><span class="lang-en">Our previous retreat event</span>
+                </p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Two-column vertical marquee -->
-                <div class="gsap-slide-right gsap-hide flex gap-3 rounded-3xl shadow-2xl overflow-hidden" style="height:460px">
-                    <!-- Column 1 — scrolls up -->
+                <div class="gsap-slide-right gsap-hide flex gap-3 rounded-3xl shadow-2xl overflow-hidden parallax-slow" style="height:460px">
+                    <!-- Column 1 — scrolls up (images duplicated for seamless loop) -->
                     <div class="flex-1 overflow-hidden rounded-2xl" id="herald-col1-viewport">
                         <div class="flex flex-col gap-3" id="herald-col1-track">
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald-1.jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald-2.jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/games.JPG" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald-1.jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald-2.jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/games.JPG" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (1).jpeg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (1).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (2).jpg" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (3).jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (4).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <!-- duplicate set -->
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (1).jpeg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (1).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (2).jpg" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (3).jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (4).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
                         </div>
                     </div>
-                    <!-- Column 2 — scrolls down, offset start -->
+                    <!-- Column 2 — scrolls down, offset start (images duplicated for seamless loop) -->
                     <div class="flex-1 overflow-hidden rounded-2xl" id="herald-col2-viewport">
                         <div class="flex flex-col gap-3" id="herald-col2-track">
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/games.JPG" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald-2.jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald-1.jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/games.JPG" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald-2.jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
-                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald-1.jpg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (5).JPG" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (6).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (7).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (8).JPG" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <!-- duplicate set -->
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (5).JPG" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (6).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (7).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
+                            <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (8).JPG" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
                         </div>
                     </div>
                 </div>
@@ -47,8 +56,8 @@ function renderHistory() {
                         <em class="text-[#D97757] font-semibold">&ldquo;Herald of God&rdquo;</em>.
                     </p>
                     <p class="text-base text-[#4A4A4A] mb-5 leading-relaxed">
-                        <span class="lang-id">Diadakan di kawasan sejuk Puncak selama 3 hari yang luar biasa, kita belajar mendalam tentang apa artinya menjadi pembawa pesan kasih Tuhan di dunia saat ini.</span>
-                        <span class="lang-en">Held in the cool highlands of Puncak for 3 incredible days, we dove deep into what it means to be God's messengers of love in today's world.</span>
+                        <span class="lang-id">Diadakan di Depok selama 3 hari yang luar biasa, kita belajar mendalam tentang apa artinya menjadi pembawa pesan kasih Tuhan di dunia saat ini.</span>
+                        <span class="lang-en">Held in Depok for 3 incredible days, we dove deep into what it means to be God's messengers of love in today's world.</span>
                     </p>
                     <p class="text-base text-[#4A4A4A] leading-relaxed">
                         <span class="lang-id">Melalui sesi penyembahan yang intens, kegiatan <em>team-building</em> yang seru, serta sesi sharing yang terbuka, dampaknya sangat terasa. Banyak yang menemukan kembali panggilan hidup mereka, dan persahabatan yang kuat terjalin.</span>

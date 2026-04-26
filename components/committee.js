@@ -29,11 +29,10 @@ function renderCommittee() {
     <section id="committee" class="py-24 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 gsap-fade-up">
-                <span class="section-pill text-[#2C4A3B] mb-5 inline-flex">&#10022; <span class="lang-id">Tim Kami</span><span class="lang-en">Our Team</span></span>
-                <h2 class="font-heading text-4xl md:text-5xl font-extrabold mt-4 gradient-text-green">
+                <h2 class="font-heading text-4xl md:text-5xl font-extrabold mb-4 gradient-text-green">
                     <span class="lang-id">Panitia Di Balik Layar</span><span class="lang-en">The Committee Behind</span>
                 </h2>
-                <p class="text-lg text-[#666666] max-w-2xl mx-auto mt-4 leading-relaxed">
+                <p class="text-lg text-[#666666] max-w-2xl mx-auto leading-relaxed">
                     <span class="lang-id">Tim berdedikasi yang bekerja di balik layar untuk mewujudkan retreat ini.</span>
                     <span class="lang-en">The dedicated team working behind the scenes to make this retreat a reality.</span>
                 </p>

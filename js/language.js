@@ -19,14 +19,15 @@ function initLanguage() {
         });
     }
 
+    function updateToggleUI() {
+        if (langDesktop) langDesktop.setAttribute('data-active', currentLang);
+        if (langMobile) langMobile.setAttribute('data-active', currentLang);
+    }
+
     function toggleLanguage() {
         currentLang = currentLang === 'id' ? 'en' : 'id';
         document.body.setAttribute('data-lang', currentLang);
-
-        const btnText = currentLang === 'id' ? 'EN' : 'ID';
-        if (langDesktop) langDesktop.textContent = btnText;
-        if (langMobile) langMobile.textContent = btnText;
-
+        updateToggleUI();
         applyPlaceholders();
         applyOptionLabels();
         setTimeout(() => ScrollTrigger.refresh(), 100);
@@ -35,7 +36,7 @@ function initLanguage() {
     if (langDesktop) langDesktop.addEventListener('click', toggleLanguage);
     if (langMobile) langMobile.addEventListener('click', toggleLanguage);
 
-    // Apply Indonesian labels on first load
+    // Apply English labels on first load
     applyPlaceholders();
     applyOptionLabels();
 }

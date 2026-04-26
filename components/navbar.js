@@ -5,7 +5,7 @@ function renderNavbar() {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'})">
-                    <span class="font-heading font-extrabold text-2xl gradient-text tracking-tight">ZEAL TANGERANG</span>
+                    <img src="assets/Logo Hitam Zeal.png" alt="Zeal Tangerang" class="h-14 w-auto object-contain">
                 </div>
                 <div class="hidden lg:flex space-x-6 items-center">
                     <a href="#about" class="relative text-[#4A4A4A] hover:text-[#D97757] font-medium transition-colors text-sm tracking-wide group"><span class="lang-id">Tentang</span><span class="lang-en">About</span><span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#D97757] transition-all group-hover:w-full rounded-full"></span></a>
@@ -14,10 +14,16 @@ function renderNavbar() {
                     <a href="#faq" class="relative text-[#4A4A4A] hover:text-[#D97757] font-medium transition-colors text-sm tracking-wide group">FAQ<span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#D97757] transition-all group-hover:w-full rounded-full"></span></a>
                     <a href="#pricing" class="relative text-[#4A4A4A] hover:text-[#D97757] font-medium transition-colors text-sm tracking-wide group"><span class="lang-id">Biaya</span><span class="lang-en">Pricing</span><span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#D97757] transition-all group-hover:w-full rounded-full"></span></a>
                     <a href="#register" class="btn-gradient text-white px-6 py-2.5 rounded-full font-semibold text-sm shadow-md"><span class="lang-id">Daftar</span><span class="lang-en">Register</span></a>
-                    <button id="lang-toggle-desktop" class="ml-2 font-heading font-bold text-[#D97757] hover:text-[#2C4A3B] transition-colors px-2 py-1 border-2 border-[#D97757] hover:border-[#2C4A3B] rounded-lg text-sm">EN</button>
+                    <button id="lang-toggle-desktop" class="lang-toggle-btn ml-2" data-active="en">
+                        <span class="lang-opt lang-opt-id">ID</span>
+                        <span class="lang-opt lang-opt-en">EN</span>
+                    </button>
                 </div>
                 <div class="lg:hidden flex items-center space-x-4">
-                    <button id="lang-toggle-mobile" class="font-heading font-bold text-[#D97757] px-2 py-1 border-2 border-[#D97757] rounded-lg text-sm">EN</button>
+                    <button id="lang-toggle-mobile" class="lang-toggle-btn" data-active="en">
+                        <span class="lang-opt lang-opt-id">ID</span>
+                        <span class="lang-opt lang-opt-en">EN</span>
+                    </button>
                     <button id="mobile-menu-btn" class="text-[#2C4A3B] focus:outline-none text-3xl">&#9776;</button>
                 </div>
             </div>

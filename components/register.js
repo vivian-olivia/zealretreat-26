@@ -34,10 +34,13 @@ function renderRegister() {
                             <div>
                                 <label for="phone" class="block text-sm font-bold text-[#2C4A3B] mb-2">Phone / WhatsApp <span class="text-[#D97757]">*</span></label>
                                 <input type="tel" id="phone" required
-                                    placeholder="Nomor WhatsApp aktif"
-                                    data-placeholder-id="Nomor WhatsApp aktif"
-                                    data-placeholder-en="Your active WhatsApp number"
+                                    placeholder="628xxxxxxxxxx"
+                                    data-placeholder-id="628xxxxxxxxxx"
+                                    data-placeholder-en="628xxxxxxxxxx"
+                                    pattern="^62[0-9]{8,13}$"
+                                    inputmode="numeric"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
+                                <p class="text-xs text-[#666666] mt-1"><span class="lang-en">Must start with 62 (e.g. 6281234567890)</span><span class="lang-id">Harus diawali 62 (contoh: 6281234567890)</span></p>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -95,10 +98,13 @@ function renderRegister() {
                             <div>
                                 <label for="emergContactPhone" class="block text-sm font-bold text-[#2C4A3B] mb-2"><span class="lang-id">No. HP Darurat</span><span class="lang-en">Emergency Phone</span> <span class="text-[#D97757]">*</span></label>
                                 <input type="tel" id="emergContactPhone" required
-                                    placeholder="Nomor HP aktif"
-                                    data-placeholder-id="Nomor HP aktif"
-                                    data-placeholder-en="Active phone number"
+                                    placeholder="628xxxxxxxxxx"
+                                    data-placeholder-id="628xxxxxxxxxx"
+                                    data-placeholder-en="628xxxxxxxxxx"
+                                    pattern="^62[0-9]{8,13}$"
+                                    inputmode="numeric"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
+                                <p class="text-xs text-[#666666] mt-1"><span class="lang-en">Must start with 62 (e.g. 6281234567890)</span><span class="lang-id">Harus diawali 62 (contoh: 6281234567890)</span></p>
                             </div>
                         </div>
                         <div class="mt-6">
@@ -126,26 +132,16 @@ function renderRegister() {
                             <p class="font-medium mt-1">a.n. Chelsea Wang</p>
                             <p class="mt-3 text-red-600 font-bold bg-red-50 p-2 border border-red-100 rounded inline-block"><span class="lang-id">PENTING: Gunakan catatan transfer</span><span class="lang-en">IMPORTANT: Use transfer notes</span>: <em>[Nama Lengkap]_retreat zeal tgr</em></p>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="paymentType" class="block text-sm font-bold text-[#2C4A3B] mb-2"><span class="lang-id">Tipe Pembayaran</span><span class="lang-en">Payment Type</span> <span class="text-[#D97757]">*</span></label>
-                                <select id="paymentType" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all bg-white">
-                                    <option value="" disabled selected data-label-id="Pilih Tipe Pembayaran" data-label-en="Select Payment Type">Pilih Tipe Pembayaran</option>
-                                    <option value="full" data-label-id="Lunas" data-label-en="Full Payment">Lunas</option>
-                                    <option value="partial" data-label-id="Cicilan" data-label-en="Partial Payment">Cicilan</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="paymentProof" class="block text-sm font-bold text-[#2C4A3B] mb-2"><span class="lang-id">Unggah Bukti Transfer</span><span class="lang-en">Upload Payment Proof</span> <span class="text-[#D97757]">*</span></label>
-                                <input type="file" id="paymentProof" accept="image/*,.heic,.heif" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all bg-white text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E5E0D8] file:text-[#2C4A3B] hover:file:bg-gray-300 cursor-pointer">
-                                <p class="text-xs mt-1 text-[#666666]"><span class="lang-id">Format: JPG, PNG, HEIC</span><span class="lang-en">Format: JPG, PNG, HEIC</span></p>
-                                <!-- Image preview -->
-                                <div id="payment-preview-wrap" class="hidden mt-3 relative w-fit">
-                                    <img id="payment-preview" src="" alt="Preview" class="max-h-48 rounded-xl border border-[#E5E0D8] shadow-sm object-contain">
-                                    <div id="payment-preview-loader" class="hidden absolute inset-0 flex items-center justify-center bg-white/80 rounded-xl">
-                                        <svg class="animate-spin w-6 h-6 text-[#D97757]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
-                                        <span class="ml-2 text-sm text-[#666666]"><span class="lang-id">Mengkonversi HEIC...</span><span class="lang-en">Converting HEIC...</span></span>
-                                    </div>
+                        <div>
+                            <label for="paymentProof" class="block text-sm font-bold text-[#2C4A3B] mb-2"><span class="lang-id">Unggah Bukti Transfer</span><span class="lang-en">Upload Payment Proof</span> <span class="text-[#D97757]">*</span></label>
+                            <input type="file" id="paymentProof" accept="image/*,.heic,.heif" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all bg-white text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E5E0D8] file:text-[#2C4A3B] hover:file:bg-gray-300 cursor-pointer">
+                            <p class="text-xs mt-1 text-[#666666]"><span class="lang-id">Format: JPG, PNG, HEIC</span><span class="lang-en">Format: JPG, PNG, HEIC</span></p>
+                            <!-- Image preview -->
+                            <div id="payment-preview-wrap" class="hidden mt-3 relative w-fit">
+                                <img id="payment-preview" src="" alt="Preview" class="max-h-48 rounded-xl border border-[#E5E0D8] shadow-sm object-contain">
+                                <div id="payment-preview-loader" class="hidden absolute inset-0 flex items-center justify-center bg-white/80 rounded-xl">
+                                    <svg class="animate-spin w-6 h-6 text-[#D97757]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
+                                    <span class="ml-2 text-sm text-[#666666]"><span class="lang-id">Mengkonversi HEIC...</span><span class="lang-en">Converting HEIC...</span></span>
                                 </div>
                             </div>
                         </div>
@@ -168,25 +164,17 @@ function renderRegister() {
                 <span class="lang-id">Pendaftaran Berhasil!</span><span class="lang-en">Registration Submitted!</span>
             </h4>
             <p class="text-[#E5E0D8] mb-6 text-sm text-center">
-                <span class="lang-id">Data dan bukti pembayaranmu telah diterima. Simpan QR Code di bawah ini!</span>
-                <span class="lang-en">Your data and payment proof have been received. Keep your QR code safe!</span>
+                <span class="lang-id">Data dan bukti pembayaranmu telah diterima. Gabung grup WhatsApp untuk info selanjutnya!</span>
+                <span class="lang-en">Your data and payment proof have been received. Join the WhatsApp group for updates!</span>
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            <div class="flex flex-col items-center gap-5">
                 <div class="bg-white p-4 rounded-xl text-center shadow-inner">
-                    <p class="text-[#2C4A3B] font-bold text-sm mb-2"><span class="lang-id">QR Code Check-in</span><span class="lang-en">Your Check-in QR Code</span></p>
-                    <img id="qr-code-img" src="" alt="Registration QR Code" class="w-32 h-32 mx-auto border border-gray-200 p-1 rounded-lg">
-                    <a id="qr-download" href="#" target="_blank" class="mt-3 inline-block text-sm font-bold text-[#D97757] hover:underline"><span class="lang-id">Simpan Gambar</span><span class="lang-en">Save Image</span></a>
+                    <p class="text-[#2C4A3B] font-bold text-sm mb-3"><span class="lang-id">Scan QR untuk Gabung Grup WA</span><span class="lang-en">Scan QR to Join WA Group</span></p>
+                    <img src="assets/wa-group.jpeg" alt="WA Group QR" class="w-40 h-40 mx-auto rounded-lg object-contain">
                 </div>
-                <div class="flex flex-col justify-center py-4">
-                    <p class="font-bold mb-3"><span class="lang-id">Langkah Selanjutnya</span><span class="lang-en">Next Step</span>:</p>
-                    <p class="text-sm text-[#E5E0D8] mb-4">
-                        <span class="lang-id">Masuk ke grup WhatsApp resmi untuk info carpool, pengumuman, dan ngobrol bareng komunitas!</span>
-                        <span class="lang-en">Join the official WhatsApp group for important updates, carpool info, and to start meeting the community!</span>
-                    </p>
-                    <a href="https://chat.whatsapp.com/E3RSQO2YNbJD4ylRMjCqE5" target="_blank" class="bg-[#25D366] hover:bg-[#1EBE53] text-white font-bold py-3 px-4 rounded-full transition-colors flex items-center justify-center shadow-md transform hover:scale-105">
-                        <span class="mr-2 text-xl">&#128172;</span> <span class="lang-id">Gabung Grup WA</span><span class="lang-en">Join WA Group</span>
-                    </a>
-                </div>
+                <a href="https://chat.whatsapp.com/JL7lOrIj8kQ8APWjSfbwfn?mode=gi_t" target="_blank" class="w-full bg-[#25D366] hover:bg-[#1EBE53] text-white font-bold py-3 px-4 rounded-full transition-colors flex items-center justify-center shadow-md transform hover:scale-105">
+                    <span class="mr-2 text-xl">&#128172;</span> <span class="lang-id">Gabung Grup WA</span><span class="lang-en">Join WA Group</span>
+                </a>
             </div>
         </div>
     </div>

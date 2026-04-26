@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTestimonies(),
         renderEventInfo(),
         renderFaq(),
-        renderCommittee(),
         renderPricing(),
         renderRegister(),
         renderFooter(),

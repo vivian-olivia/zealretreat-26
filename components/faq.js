@@ -45,8 +45,8 @@ function renderFaq() {
                     </button>
                     <div class="accordion-content px-6 bg-white">
                         <p class="text-[#4A4A4A] pb-2">
-                            <span class="lang-id">Ya! Biaya pendaftaranmu sudah mengcover akomodasi ala kabin selama 2 malam, semua jadwal makan, dan seluruh materi retreat.</span>
-                            <span class="lang-en">Yes! Your registration fee covers 2 nights of cabin-style accommodation, all meals, and all retreat materials. You only need to bring your personal items.</span>
+                            <span class="lang-id">Ya! Biaya pendaftaranmu sudah mengcover akomodasi selama 2 malam, semua jadwal makan, dan seluruh materi retreat.</span>
+                            <span class="lang-en">Yes! Your registration fee covers 2 nights of accommodation, all meals, and all retreat materials. You only need to bring your personal items.</span>
                         </p>
                     </div>
                 </div>

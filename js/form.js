@@ -79,10 +79,28 @@ function initForm() {
         });
     }
 
+    function validatePhone(value) {
+        return /^62[0-9]{8,13}$/.test(value);
+    }
+
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
         const isId = document.body.getAttribute('data-lang') === 'id';
+
+        const phoneVal = document.getElementById('phone').value;
+        const emergVal = document.getElementById('emergContactPhone').value;
+        if (!validatePhone(phoneVal)) {
+            alert(isId ? 'Nomor WhatsApp harus diawali dengan 62 (contoh: 6281234567890).' : 'WhatsApp number must start with 62 (e.g. 6281234567890).');
+            document.getElementById('phone').focus();
+            return;
+        }
+        if (!validatePhone(emergVal)) {
+            alert(isId ? 'No. HP Darurat harus diawali dengan 62 (contoh: 6281234567890).' : 'Emergency phone must start with 62 (e.g. 6281234567890).');
+            document.getElementById('emergContactPhone').focus();
+            return;
+        }
+
         submitBtn.innerHTML = isId ? 'Memproses...' : 'Processing...';
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-70');
@@ -99,22 +117,47 @@ function initForm() {
             emergencyRelation: document.getElementById('emergContactRelation').value,
             emergencyPhone:    document.getElementById('emergContactPhone').value,
             notes:             document.getElementById('notes').value,
-            paymentType:       document.getElementById('paymentType').value,
             registrationId,
         };
 
-        // Send to Google Sheets via GET — avoids body-loss on redirect that kills POST + no-cors
+        // Read payment proof as base64 for Drive upload
+        let imageBase64 = '', imageMime = '', imageExt = '';
+        const proofFile = proofInput ? proofInput.files[0] : null;
+        if (proofFile) {
+            const isHeic = proofFile.type === 'image/heic' || proofFile.type === 'image/heif'
+                || proofFile.name.toLowerCase().endsWith('.heic')
+                || proofFile.name.toLowerCase().endsWith('.heif');
+            try {
+                const blob = isHeic
+                    ? await heic2any({ blob: proofFile, toType: 'image/jpeg', quality: 0.85 })
+                    : proofFile;
+                imageMime = isHeic ? 'image/jpeg' : (proofFile.type || 'image/jpeg');
+                imageExt  = isHeic ? 'jpg' : proofFile.name.split('.').pop().toLowerCase();
+                imageBase64 = await new Promise(resolve => {
+                    const r = new FileReader();
+                    r.onload = ev => resolve(ev.target.result.split(',')[1]);
+                    r.readAsDataURL(blob);
+                });
+            } catch { /* file read failed — send without image */ }
+        }
+
+        // Send text data to Sheets via GET (works with existing deployed script)
         if (APPS_SCRIPT_URL) {
             const qs = new URLSearchParams({ payload: JSON.stringify(formData) });
             fetch(`${APPS_SCRIPT_URL}?${qs}`, { mode: 'no-cors' }).catch(() => {});
         }
 
+        // Send image to Drive via POST — requires redeployed Apps Script with doPost
+        if (APPS_SCRIPT_URL && imageBase64) {
+            fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({ registrationId: formData.registrationId, fullName: formData.fullName, imageBase64, imageMime, imageExt }),
+            }).catch(() => {});
+        }
+
         // Small delay to show processing state
         await new Promise(resolve => setTimeout(resolve, 1500));
-
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=HOME2026-${registrationId}&color=2C4A3B`;
-        document.getElementById('qr-code-img').src = qrUrl;
-        document.getElementById('qr-download').href = qrUrl;
 
         // Reset submit button
         submitBtn.innerHTML = `<span class="lang-id">Kirim Pendaftaran</span><span class="lang-en">Submit Registration</span>`;
