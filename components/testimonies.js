@@ -64,9 +64,11 @@ function renderTestimonies() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
                 </button>
 
-                <div id="testimonial-viewport" class="mx-2 py-6" style="overflow-x: hidden; overflow-y: visible;">
-                    <div id="testimonial-track" class="flex gap-6 pb-4">
-                        ${cards}
+                <div style="overflow:hidden;padding:16px 0;margin:-16px 0;">
+                    <div id="testimonial-viewport" class="mx-2 py-6" style="overflow:visible;cursor:grab;touch-action:pan-y;user-select:none;">
+                        <div id="testimonial-track" class="flex gap-6 pb-4">
+                            ${cards}
+                        </div>
                     </div>
                 </div>
 
@@ -90,20 +92,35 @@ function initTestimonialScroll() {
 
     Array.from(track.children).forEach(c => track.appendChild(c.cloneNode(true)));
 
-    const halfWidth = track.scrollWidth / 2;
-
     const SPEED     = 0.5;
     const CARD_STEP = 364;
     const DECAY     = 0.88;
+    let halfWidth    = 0;
     let x            = 0;
     let targetOffset = 0;
+    let isDragging   = false;
+    let dragStartX   = 0;
+    let dragPosX     = 0;
+
+    function getHalf() {
+        const w = track.scrollWidth / 2;
+        return w > 10 ? w : 0;
+    }
+
+    function wrap(v) {
+        return ((v % halfWidth) + halfWidth) % halfWidth;
+    }
 
     function tick() {
-        x += SPEED + targetOffset * (1 - DECAY);
-        targetOffset *= DECAY;
-        if (Math.abs(targetOffset) < 0.05) targetOffset = 0;
-        if (x >= halfWidth) x -= halfWidth;
-        if (x < 0) x += halfWidth;
+        if (!halfWidth) halfWidth = getHalf();
+        if (!halfWidth) { requestAnimationFrame(tick); return; }
+
+        if (!isDragging) {
+            x += SPEED + targetOffset * (1 - DECAY);
+            targetOffset *= DECAY;
+            if (Math.abs(targetOffset) < 0.05) targetOffset = 0;
+        }
+        x = wrap(x);
         track.style.transform = `translateX(-${x}px)`;
         requestAnimationFrame(tick);
     }
@@ -114,4 +131,61 @@ function initTestimonialScroll() {
 
     prevBtn?.addEventListener('click', () => jump(-1));
     nextBtn?.addEventListener('click', () => jump(1));
+
+    // ── Touch drag ──────────────────────────────────────────────────────────
+    viewport.addEventListener('touchstart', (e) => {
+        isDragging   = true;
+        targetOffset = 0;
+        dragStartX   = e.touches[0].clientX;
+        dragPosX     = x;
+    }, { passive: true });
+
+    viewport.addEventListener('touchmove', (e) => {
+        if (!isDragging || !halfWidth) return;
+        const delta = dragStartX - e.touches[0].clientX;
+        x = wrap(dragPosX + delta);
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        const delta = dragStartX - e.changedTouches[0].clientX;
+        targetOffset = Math.max(-CARD_STEP * 2, Math.min(CARD_STEP * 2, delta * 1.5));
+    }, { passive: true });
+
+    // ── Mouse drag (desktop) ────────────────────────────────────────────────
+    let mouseDown  = false;
+    let mouseStart = 0;
+    let mousePosX  = 0;
+
+    viewport.addEventListener('mousedown', (e) => {
+        mouseDown    = true;
+        isDragging   = true;
+        targetOffset = 0;
+        mouseStart   = e.clientX;
+        mousePosX    = x;
+        viewport.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!mouseDown || !halfWidth) return;
+        const delta = mouseStart - e.clientX;
+        x = wrap(mousePosX + delta);
+    });
+
+    window.addEventListener('mouseup', (e) => {
+        if (!mouseDown) return;
+        mouseDown  = false;
+        isDragging = false;
+        viewport.style.cursor = '';
+        const delta = mouseStart - e.clientX;
+        targetOffset = Math.max(-CARD_STEP * 2, Math.min(CARD_STEP * 2, delta * 1.5));
+    });
+
+    // ── Trackpad two-finger scroll ─────────────────────────────────────────
+    viewport.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaX) < 1) return;
+        e.preventDefault();
+        targetOffset = Math.max(-CARD_STEP * 2, Math.min(CARD_STEP * 2, targetOffset + e.deltaX));
+    }, { passive: false });
 }

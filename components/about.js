@@ -52,7 +52,7 @@ function renderAbout() {
                 <div class="gsap-slide-left gsap-hide relative h-[520px] lg:h-[540px]">
                     <div class="relative z-10 rounded-3xl shadow-2xl h-full flex flex-col gap-2 p-2.5 overflow-hidden bg-white">
                         <!-- Row 1 — scrolls left (images duplicated for seamless loop) -->
-                        <div class="flex-1 overflow-hidden rounded-xl">
+                        <div class="flex-1 overflow-hidden rounded-xl" style="touch-action:pan-y;cursor:grab;user-select:none;">
                             <div class="flex gap-2 h-full items-stretch" id="zeal-row1-track">
                                 <div class="flex-shrink-0 w-44 overflow-hidden rounded-xl cursor-pointer" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/zeal (1).jpeg" alt="Zeal" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
                                 <div class="flex-shrink-0 w-44 overflow-hidden rounded-xl cursor-pointer" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/zeal (2).jpeg" alt="Zeal" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
@@ -72,7 +72,7 @@ function renderAbout() {
                             </div>
                         </div>
                         <!-- Row 2 — scrolls right (images duplicated for seamless loop) -->
-                        <div class="flex-1 overflow-hidden rounded-xl">
+                        <div class="flex-1 overflow-hidden rounded-xl" style="touch-action:pan-y;cursor:grab;user-select:none;">
                             <div class="flex gap-2 h-full items-stretch" id="zeal-row2-track">
                                 <div class="flex-shrink-0 w-44 overflow-hidden rounded-xl cursor-pointer" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/zeal (8).jpeg" alt="Zeal" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
                                 <div class="flex-shrink-0 w-44 overflow-hidden rounded-xl cursor-pointer" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/zeal (9).jpeg" alt="Zeal" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
@@ -90,7 +90,7 @@ function renderAbout() {
                             </div>
                         </div>
                         <!-- Row 3 — scrolls left offset (images duplicated for seamless loop) -->
-                        <div class="flex-1 overflow-hidden rounded-xl">
+                        <div class="flex-1 overflow-hidden rounded-xl" style="touch-action:pan-y;cursor:grab;user-select:none;">
                             <div class="flex gap-2 h-full items-stretch" id="zeal-row3-track">
                                 <div class="flex-shrink-0 w-44 overflow-hidden rounded-xl cursor-pointer" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/zeal (14).jpeg" alt="Zeal" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
                                 <div class="flex-shrink-0 w-44 overflow-hidden rounded-xl cursor-pointer" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/zeal (15).jpeg" alt="Zeal" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>

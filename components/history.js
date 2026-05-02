@@ -15,7 +15,7 @@ function renderHistory() {
                 <!-- Two-column vertical marquee -->
                 <div class="gsap-slide-right gsap-hide flex gap-3 rounded-3xl shadow-2xl overflow-hidden parallax-slow" style="height:460px">
                     <!-- Column 1 — scrolls up (images duplicated for seamless loop) -->
-                    <div class="flex-1 overflow-hidden rounded-2xl" id="herald-col1-viewport">
+                    <div class="flex-1 overflow-hidden rounded-2xl" id="herald-col1-viewport" style="touch-action:pan-x;cursor:grab;user-select:none;">
                         <div class="flex flex-col gap-3" id="herald-col1-track">
                             <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (1).jpeg" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
                             <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (1).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
@@ -31,7 +31,7 @@ function renderHistory() {
                         </div>
                     </div>
                     <!-- Column 2 — scrolls down, offset start (images duplicated for seamless loop) -->
-                    <div class="flex-1 overflow-hidden rounded-2xl" id="herald-col2-viewport">
+                    <div class="flex-1 overflow-hidden rounded-2xl" id="herald-col2-viewport" style="touch-action:pan-x;cursor:grab;user-select:none;">
                         <div class="flex flex-col gap-3" id="herald-col2-track">
                             <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (5).JPG" alt="Herald games" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
                             <div class="flex-shrink-0 overflow-hidden rounded-2xl cursor-pointer" style="height:210px" onclick="window.openLightbox(this.querySelector('img').src)"><img src="assets/herald (6).JPG" alt="Herald 2024" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"></div>
