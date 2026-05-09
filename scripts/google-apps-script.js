@@ -81,38 +81,47 @@ function doGet(e) {
     }
 }
 
-// doPost — saves payment proof to Drive, then updates the matching sheet row with the file link
+// doPost — receives all form data + image via hidden iframe form POST, writes sheet row + Drive link
 function doPost(e) {
     try {
-        var data = JSON.parse(e.postData.contents);
+        // hidden iframe form POST sends data in e.parameter.payload
+        var raw  = (e.parameter && e.parameter.payload)
+                 ? e.parameter.payload
+                 : e.postData.contents;
+        var data = JSON.parse(raw);
+        var sheet = getSheet();
 
-        // Save image to Drive
+        // Save image to Drive (non-fatal if it fails)
         var fileUrl = '';
-        if (data.imageBase64) {
-            var bytes    = Utilities.base64Decode(data.imageBase64);
-            var mime     = data.imageMime || 'image/jpeg';
-            var ext      = data.imageExt  || 'jpg';
-            var fileName = (data.fullName || 'unknown') + '_retreat zeal tgr.' + ext;
-            var blob     = Utilities.newBlob(bytes, mime, fileName);
-            var folder   = DriveApp.getFolderById(DRIVE_FOLDER_ID);
-            var file     = folder.createFile(blob);
-            file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-            fileUrl = file.getUrl();
-        }
-
-        // Update the matching row in Sheets with the Drive link (match by phone, most recent row)
-        if (fileUrl && data.phone) {
-            var sheet    = getSheet();
-            var lastRow  = sheet.getLastRow();
-            var phoneCol = HEADERS.indexOf('Phone/WhatsApp') + 1;
-            var proofCol = HEADERS.indexOf('Payment Proof') + 1;
-            for (var i = lastRow; i >= 2; i--) {
-                if (String(sheet.getRange(i, phoneCol).getValue()) === String(data.phone)) {
-                    sheet.getRange(i, proofCol).setValue(fileUrl);
-                    break;
-                }
+        try {
+            if (data.imageBase64) {
+                var bytes    = Utilities.base64Decode(data.imageBase64);
+                var mime     = data.imageMime || 'image/jpeg';
+                var ext      = data.imageExt  || 'jpg';
+                var fileName = (data.fullName || 'unknown') + '_retreat zeal tgr.' + ext;
+                var blob     = Utilities.newBlob(bytes, mime, fileName);
+                var folder   = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+                var file     = folder.createFile(blob);
+                file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+                fileUrl = file.getUrl();
             }
-        }
+        } catch (imgErr) { /* image upload failed — row still written below */ }
+
+        // Write all data + Drive link to sheet in one go
+        sheet.appendRow([
+            new Date().toLocaleString('id-ID'),
+            data.fullName          || '',
+            data.phone             || '',
+            data.university        || '',
+            data.status            || '',
+            data.transport         || '',
+            data.emergencyName     || '',
+            data.emergencyRelation || '',
+            data.emergencyPhone    || '',
+            data.notes             || '',
+            paymentTypeLabel(data.paymentType),
+            fileUrl
+        ]);
 
         return ContentService
             .createTextOutput(JSON.stringify({ status: 'success', fileUrl: fileUrl }))

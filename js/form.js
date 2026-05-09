@@ -180,17 +180,29 @@ function initForm() {
             } catch { /* file read failed — send without image */ }
         }
 
-        // Send text data to Sheets via GET (works with existing deployed script)
+        // Submit all data (text + image) via hidden iframe form POST.
+        // fetch/XHR convert POST->GET on Apps Script's redirect; a real form submission does not.
         if (APPS_SCRIPT_URL) {
-            const qs = new URLSearchParams({ payload: JSON.stringify(formData) });
-            fetch(`${APPS_SCRIPT_URL}?${qs}`, { mode: 'no-cors' }).catch(() => {});
-        }
-
-        // Send image to Drive via POST using XHR — fetch no-cors converts POST→GET on Apps Script redirect
-        if (APPS_SCRIPT_URL && imageBase64) {
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', APPS_SCRIPT_URL, true);
-            xhr.send(JSON.stringify({ phone: formData.phone, fullName: formData.fullName, imageBase64, imageMime, imageExt }));
+            const allData = Object.assign({}, formData, { imageBase64, imageMime, imageExt });
+            const iframe  = document.createElement('iframe');
+            iframe.name   = 'submit-frame';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            const form   = document.createElement('form');
+            form.method  = 'POST';
+            form.action  = APPS_SCRIPT_URL;
+            form.target  = 'submit-frame';
+            form.style.display = 'none';
+            const input  = document.createElement('input');
+            input.type   = 'hidden';
+            input.name   = 'payload';
+            input.value  = JSON.stringify(allData);
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+            setTimeout(() => {
+                try { document.body.removeChild(form); document.body.removeChild(iframe); } catch (_) {}
+            }, 60000);
         }
 
         // Small delay to show processing state
