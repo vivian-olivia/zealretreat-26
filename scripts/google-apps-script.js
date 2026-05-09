@@ -21,8 +21,14 @@ const DRIVE_FOLDER_ID = '1079JLCjmYDjWJS3rYmis-aqv3wOfIsZa';
 const HEADERS = [
     'Timestamp', 'Full Name', 'Phone/WhatsApp', 'University', 'Status',
     'Transport', 'Emergency Contact', 'Relation', 'Emergency Phone',
-    'Notes', 'Registration ID', 'Payment Proof'
+    'Notes', 'Payment Type', 'Payment Proof'
 ];
+
+function paymentTypeLabel(val) {
+    if (val === 'full') return 'Lunas (Rp 500.000)';
+    if (val === 'dp')   return 'DP 50% (Rp 250.000)';
+    return val || '';
+}
 
 /**
  * Run this ONCE from the Apps Script editor (Run → authorizeAll) to grant Drive + Sheets permissions.
@@ -60,7 +66,7 @@ function doGet(e) {
             data.emergencyRelation || '',
             data.emergencyPhone    || '',
             data.notes             || '',
-            data.registrationId    || '',
+            paymentTypeLabel(data.paymentType),
             ''  // Payment Proof — filled in by doPost once image arrives
         ]);
 
@@ -94,14 +100,14 @@ function doPost(e) {
             fileUrl = file.getUrl();
         }
 
-        // Update the matching row in Sheets with the Drive link
-        if (fileUrl && data.registrationId) {
+        // Update the matching row in Sheets with the Drive link (match by phone, most recent row)
+        if (fileUrl && data.phone) {
             var sheet    = getSheet();
             var lastRow  = sheet.getLastRow();
-            var idCol    = HEADERS.indexOf('Registration ID') + 1;
+            var phoneCol = HEADERS.indexOf('Phone/WhatsApp') + 1;
             var proofCol = HEADERS.indexOf('Payment Proof') + 1;
-            for (var i = 2; i <= lastRow; i++) {
-                if (sheet.getRange(i, idCol).getValue() === data.registrationId) {
+            for (var i = lastRow; i >= 2; i--) {
+                if (sheet.getRange(i, phoneCol).getValue() === data.phone) {
                     sheet.getRange(i, proofCol).setValue(fileUrl);
                     break;
                 }

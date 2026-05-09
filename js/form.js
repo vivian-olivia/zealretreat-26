@@ -145,7 +145,6 @@ function initForm() {
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-70');
 
-        const registrationId = Math.random().toString(36).substring(2, 10).toUpperCase();
 
         const formData = {
             fullName:          document.getElementById('fullName').value,
@@ -158,7 +157,6 @@ function initForm() {
             emergencyPhone:    document.getElementById('emergContactPhone').value,
             notes:             document.getElementById('notes').value,
             paymentType:       document.getElementById('paymentType').value,
-            registrationId,
         };
 
         // Read payment proof as base64 for Drive upload
@@ -193,7 +191,7 @@ function initForm() {
             fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: JSON.stringify({ registrationId: formData.registrationId, fullName: formData.fullName, imageBase64, imageMime, imageExt }),
+                body: JSON.stringify({ phone: formData.phone, fullName: formData.fullName, imageBase64, imageMime, imageExt }),
             }).catch(() => {});
         }
 
