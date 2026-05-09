@@ -12,63 +12,71 @@ function renderPricing() {
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto gsap-stagger-container items-start">
-                <!-- Early Bird — featured card -->
-                <div class="gsap-stagger-item relative md:-mt-4 transform transition-all duration-300 hover:-translate-y-2" style="filter: drop-shadow(0 20px 40px rgba(217,119,87,0.35));">
-                    <!-- Outer glow ring -->
-                    <div class="absolute -inset-0.5 bg-gradient-to-br from-[#D97757] to-[#F4A261] rounded-3xl opacity-70 blur-sm"></div>
-                    <div class="relative bg-gradient-to-br from-[#fff8f5] to-white rounded-3xl overflow-hidden">
-                        <div class="h-2 w-full bg-gradient-to-r from-[#D97757] to-[#F4A261]"></div>
-                        <!-- Popular ribbon -->
-                        <div class="absolute top-5 right-5 flex items-center gap-1.5 btn-gradient text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
-                            <span>&#11088;</span>
-                            <span class="lang-id">Terhemat</span><span class="lang-en">Best Value</span>
-                        </div>
-                        <div class="p-8 pt-10">
-                            <h3 class="font-heading text-2xl font-bold text-[#2C4A3B] mb-1">Early Bird</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto gsap-stagger-container items-stretch">
+
+                <!-- Retreat Fee Card -->
+                <div class="gsap-stagger-item relative transform transition-all duration-300 hover:-translate-y-2 flex flex-col" style="filter: drop-shadow(0 20px 40px rgba(44,74,59,0.25));">
+                    <div class="absolute -inset-0.5 bg-gradient-to-br from-[#2C4A3B] to-[#D97757] rounded-3xl opacity-50 blur-sm"></div>
+                    <div class="relative bg-white rounded-3xl overflow-hidden flex flex-col flex-1">
+                        <div class="h-2 w-full bg-gradient-to-r from-[#2C4A3B] to-[#D97757]"></div>
+                        <div class="p-8 pt-10 flex flex-col flex-1">
+                            <h3 class="font-heading text-2xl font-bold text-[#2C4A3B] mb-1">
+                                <span class="lang-id">Biaya Retreat</span><span class="lang-en">Retreat Fee</span>
+                            </h3>
                             <p class="text-[#666666] text-sm mb-6">
-                                <span class="lang-id">Daftar lebih awal dan hemat biaya retreatmu.</span><span class="lang-en">Register early and save on your retreat experience.</span>
+                                <span class="lang-id">Pendaftaran retreat akhir pekan.</span><span class="lang-en">Registration for the youth retreat weekend.</span>
                             </p>
                             <div class="mb-6">
-                                <p class="text-sm text-[#aaa] line-through mb-1 font-medium">Rp 500.000</p>
-                                <span class="font-heading text-5xl font-extrabold gradient-text">Rp 350.000</span>
-                                <span class="ml-2 inline-block bg-[#D97757]/10 text-[#D97757] text-xs font-bold px-2 py-0.5 rounded-full align-middle">Save 30%</span>
+                                <span class="font-heading text-5xl font-extrabold gradient-text">Rp 500.000</span>
                             </div>
-                            <ul class="space-y-3 mb-8 text-left">
-                                <li class="flex items-center gap-3 text-[#4A4A4A] text-sm font-medium"><span class="w-5 h-5 rounded-full btn-gradient flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Akomodasi 2 Malam</span><span class="lang-en">2 Nights Accommodation</span></li>
-                                <li class="flex items-center gap-3 text-[#4A4A4A] text-sm font-medium"><span class="w-5 h-5 rounded-full btn-gradient flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Semua Makanan</span><span class="lang-en">All Meals Included</span></li>
-                                <li class="flex items-center gap-3 text-[#4A4A4A] text-sm font-medium"><span class="w-5 h-5 rounded-full btn-gradient flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Materi Retreat</span><span class="lang-en">Retreat Materials</span></li>
-                                <li class="flex items-center gap-3 text-[#4A4A4A] text-sm font-medium"><span class="w-5 h-5 rounded-full btn-gradient flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Transportasi Disediakan</span><span class="lang-en">Transportation Provided</span></li>
+                            <ul class="space-y-3 mb-8 text-left flex-1">
+                                <li class="flex items-center gap-3 text-[#4A4A4A] text-sm font-medium"><span class="w-5 h-5 rounded-full bg-[#2C4A3B] flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Akomodasi 3 Hari 2 Malam</span><span class="lang-en">3 Days 2 Nights Accommodation</span></li>
+                                <li class="flex items-center gap-3 text-[#4A4A4A] text-sm font-medium"><span class="w-5 h-5 rounded-full bg-[#2C4A3B] flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Semua Makanan</span><span class="lang-en">All Meals Included</span></li>
+                                <li class="flex items-center gap-3 text-[#4A4A4A] text-sm font-medium"><span class="w-5 h-5 rounded-full bg-[#2C4A3B] flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Materi Retreat</span><span class="lang-en">Retreat Materials</span></li>
+                                <li class="flex items-center gap-3 text-[#4A4A4A] text-sm font-medium"><span class="w-5 h-5 rounded-full bg-[#2C4A3B] flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Transportasi Disediakan</span><span class="lang-en">Transportation Provided</span></li>
                             </ul>
-                            <div class="w-full bg-gradient-to-r from-[#FFF0E8] to-[#FFF5F0] py-3 px-4 rounded-xl border border-[#F4A261]/40 text-center">
-                                <p class="text-sm text-[#D97757] font-bold">&#9201; <span class="lang-id">Berakhir 7 Juni 2026</span><span class="lang-en">Ends 7 June 2026</span></p>
+                            <div class="w-full bg-[#FAF8F5] py-3 px-4 rounded-xl border border-[#E5E0D8] text-center mt-auto">
+                                <p class="text-sm text-[#666666] font-bold">&#9201; <span class="lang-id">Pendaftaran ditutup 30 Juni 2026</span><span class="lang-en">Registration closes 30 June 2026</span></p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Normal Price -->
-                <div class="gsap-stagger-item bg-white rounded-3xl shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl overflow-hidden">
-                    <div class="h-2 w-full bg-[#2C4A3B]"></div>
-                    <div class="p-8 pt-10">
-                        <h3 class="font-heading text-2xl font-bold text-[#2C4A3B] mb-1">Normal Price</h3>
-                        <p class="text-[#666666] text-sm mb-6">
-                            <span class="lang-id">Pendaftaran standar untuk retreat akhir pekan.</span><span class="lang-en">Standard registration for the youth retreat weekend.</span>
-                        </p>
-                        <div class="mb-6">
-                            <span class="font-heading text-4xl font-extrabold gradient-text-green">Rp 500.000</span>
+                <!-- Cicilan / Installment Card -->
+                <div class="gsap-stagger-item bg-white rounded-3xl border border-[#E5E0D8] shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 flex flex-col">
+                    <div class="h-2 w-full bg-gradient-to-r from-[#D97757] to-[#F4A261]"></div>
+                    <div class="p-8 pt-10 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-2xl">&#128176;</span>
+                            <h3 class="font-heading text-2xl font-bold text-[#2C4A3B]">
+                                <span class="lang-id">Bisa Cicilan!</span><span class="lang-en">Installment Available!</span>
+                            </h3>
                         </div>
-                        <ul class="space-y-3 mb-8 text-left">
-                            <li class="flex items-center gap-3 text-[#4A4A4A] text-sm"><span class="w-5 h-5 rounded-full bg-[#2C4A3B] flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Akomodasi 2 Malam</span><span class="lang-en">2 Nights Accommodation</span></li>
-                            <li class="flex items-center gap-3 text-[#4A4A4A] text-sm"><span class="w-5 h-5 rounded-full bg-[#2C4A3B] flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Semua Makanan</span><span class="lang-en">All Meals Included</span></li>
-                            <li class="flex items-center gap-3 text-[#4A4A4A] text-sm"><span class="w-5 h-5 rounded-full bg-[#2C4A3B] flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Materi Retreat</span><span class="lang-en">Retreat Materials</span></li>
-                            <li class="flex items-center gap-3 text-[#4A4A4A] text-sm"><span class="w-5 h-5 rounded-full bg-[#2C4A3B] flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Transportasi Disediakan</span><span class="lang-en">Transportation Provided</span></li>
+                        <p class="text-[#666666] text-sm mb-6">
+                            <span class="lang-id">Tidak harus lunas di awal — bayar sebagian dulu.</span><span class="lang-en">No need to pay in full upfront — start with a deposit.</span>
+                        </p>
+                        <p class="text-sm font-semibold text-[#2C4A3B] mb-3"><span class="lang-id">Ketentuan Cicilan:</span><span class="lang-en">Installment Terms:</span></p>
+                        <ul class="space-y-3 mb-8 text-left flex-1">
+                            <li class="flex items-start gap-3 text-[#4A4A4A] text-sm font-medium">
+                                <span class="w-5 h-5 rounded-full bg-[#D97757] flex items-center justify-center text-white text-xs flex-shrink-0 mt-0.5">&#10003;</span>
+                                <span><span class="lang-id">DP minimal <strong>50%</strong> (Rp 250.000) dibayar saat daftar</span><span class="lang-en">Minimum <strong>50% DP</strong> (Rp 250,000) paid upon registration</span></span>
+                            </li>
+                            <li class="flex items-start gap-3 text-[#4A4A4A] text-sm font-medium">
+                                <span class="w-5 h-5 rounded-full bg-[#D97757] flex items-center justify-center text-white text-xs flex-shrink-0 mt-0.5">&#10003;</span>
+                                <span><span class="lang-id">Sisa Rp 250.000 dilunasi sesuai kesepakatan</span><span class="lang-en">Remaining Rp 250,000 settled as agreed</span></span>
+                            </li>
                         </ul>
-                        <div class="w-full bg-[#FAF8F5] py-3 px-4 rounded-xl border border-[#E5E0D8] text-center">
-                            <p class="text-sm text-[#666666] font-bold"><span class="lang-id">Berakhir 30 Juni 2026</span><span class="lang-en">Ends 30 June 2026</span></p>
+                        <div class="bg-[#FAF8F5] rounded-xl p-4 border border-[#E5E0D8] mt-auto">
+                            <p class="text-sm text-[#4A4A4A] mb-3">
+                                <span class="lang-id">Ada pertanyaan soal biaya atau cicilan?</span><span class="lang-en">Questions about payment or installments?</span>
+                            </p>
+                            <a href="https://wa.me/6287876126072" target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE53] text-white font-bold text-sm py-2 px-4 rounded-full transition-colors shadow-sm">
+                                <span>&#128172;</span> Chelsea
+                            </a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

@@ -63,6 +63,29 @@ function initForm() {
         });
     }
 
+    // Payment type dropdown — show amount to pay
+    const paymentTypeSelect = document.getElementById('paymentType');
+    const amountDisplay     = document.getElementById('payment-amount-display');
+    const amountValue       = document.getElementById('payment-amount-value');
+    const amountNote        = document.getElementById('payment-amount-note');
+
+    if (paymentTypeSelect) {
+        paymentTypeSelect.addEventListener('change', () => {
+            const isId = document.body.getAttribute('data-lang') === 'id';
+            const val  = paymentTypeSelect.value;
+            if (val === 'full') {
+                amountValue.textContent = 'Rp 500.000';
+                amountNote.textContent  = isId ? 'Pembayaran lunas' : 'Full payment';
+            } else if (val === 'dp') {
+                amountValue.textContent = 'Rp 250.000';
+                amountNote.textContent  = isId
+                    ? 'DP 50% sekarang, sisa Rp 250.000 sesuai kesepakatan'
+                    : '50% deposit now, remaining Rp 250,000 as agreed';
+            }
+            amountDisplay.classList.remove('hidden');
+        });
+    }
+
     // Copy bank account number
     if (copyBtn) {
         copyBtn.addEventListener('click', () => {
@@ -117,6 +140,7 @@ function initForm() {
             emergencyRelation: document.getElementById('emergContactRelation').value,
             emergencyPhone:    document.getElementById('emergContactPhone').value,
             notes:             document.getElementById('notes').value,
+            paymentType:       document.getElementById('paymentType').value,
             registrationId,
         };
 
@@ -174,5 +198,6 @@ function initForm() {
         form.reset();
         previewWrap.classList.add('hidden');
         previewImg.src = '';
+        if (amountDisplay) amountDisplay.classList.add('hidden');
     });
 }

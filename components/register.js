@@ -1,6 +1,5 @@
 function renderRegister() {
-    const isEarlyBird = new Date() < new Date('2026-06-01');
-    const totalFee = isEarlyBird ? 'Rp 350.000 (Early Bird)' : 'Rp 500.000';
+    const totalFee = 'Rp 500.000';
     return `
     <!-- Registration Section -->
     <section id="register" class="py-24 bg-[#E5E0D8] overflow-hidden">
@@ -120,8 +119,31 @@ function renderRegister() {
                     <!-- Payment Details -->
                     <div class="bg-[#FAF8F5] p-6 rounded-2xl border border-[#E5E0D8]">
                         <h4 class="font-heading font-bold text-xl text-[#2C4A3B] mb-4 border-b border-gray-200 pb-2"><span class="lang-id">Info Pembayaran</span><span class="lang-en">Payment Info</span></h4>
-                        <div class="mb-6 text-sm text-[#4A4A4A] bg-white p-4 rounded-xl shadow-sm">
-                            <p class="mb-2"><span class="lang-id">Biaya Total</span><span class="lang-en">Total Fee</span>: <strong>${totalFee}</strong></p>
+
+                        <!-- Payment Type Dropdown -->
+                        <div class="mb-4">
+                            <label for="paymentType" class="block text-sm font-bold text-[#2C4A3B] mb-2">
+                                <span class="lang-id">Metode Pembayaran</span><span class="lang-en">Payment Method</span> <span class="text-[#D97757]">*</span>
+                            </label>
+                            <select id="paymentType" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all bg-white text-[#4A4A4A]">
+                                <option value="" disabled selected data-label-id="Pilih Metode Pembayaran" data-label-en="Select Payment Method">Pilih Metode Pembayaran</option>
+                                <option value="full" data-label-id="Lunas — Rp 500.000" data-label-en="Full Payment — Rp 500,000">Lunas — Rp 500.000</option>
+                                <option value="dp" data-label-id="DP 50% — Rp 250.000" data-label-en="Down Payment 50% — Rp 250,000">DP 50% — Rp 250.000</option>
+                            </select>
+                        </div>
+
+                        <!-- Amount to Pay (shown after selection) -->
+                        <div id="payment-amount-display" class="hidden mb-5 rounded-xl overflow-hidden border border-[#2C4A3B]/20">
+                            <div class="bg-gradient-to-r from-[#2C4A3B] to-[#3a6150] px-4 py-2">
+                                <p class="text-xs font-bold text-white/70 uppercase tracking-wider"><span class="lang-id">Yang harus ditransfer sekarang</span><span class="lang-en">Amount to transfer now</span></p>
+                            </div>
+                            <div class="bg-white px-4 py-4 flex items-center justify-between gap-4">
+                                <span id="payment-amount-value" class="font-heading text-3xl font-extrabold gradient-text"></span>
+                                <span id="payment-amount-note" class="text-xs text-[#666666] text-right leading-snug max-w-[140px]"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-5 text-sm text-[#4A4A4A] bg-white p-4 rounded-xl shadow-sm">
                             <p class="mb-1"><span class="lang-id">Transfer ke rekening</span><span class="lang-en">Transfer to bank account</span>:</p>
                             <div class="flex items-center gap-3 mt-1">
                                 <p class="text-xl text-[#2C4A3B] font-bold">BCA 6050525820</p>
@@ -132,6 +154,15 @@ function renderRegister() {
                             <p class="font-medium mt-1">a.n. Chelsea Wang</p>
                             <p class="mt-3 text-red-600 font-bold bg-red-50 p-2 border border-red-100 rounded inline-block"><span class="lang-id">PENTING: Gunakan catatan transfer</span><span class="lang-en">IMPORTANT: Use transfer notes</span>: <em>[Nama Lengkap]_retreat zeal tgr</em></p>
                         </div>
+
+                        <!-- Contact Chelsea -->
+                        <div class="mb-5 bg-[#FFF8F5] border border-[#F4A261]/40 rounded-xl p-4 text-sm text-[#4A4A4A]">
+                            <p class="mb-2"><span class="lang-id">Ada pertanyaan soal biaya/cicilan? Hubungi Chelsea:</span><span class="lang-en">Questions about payment/installments? Contact Chelsea:</span></p>
+                            <a href="https://wa.me/6287876126072" target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE53] text-white font-bold text-xs py-1.5 px-3 rounded-full transition-colors">
+                                &#128172; Chelsea
+                            </a>
+                        </div>
+
                         <div>
                             <label for="paymentProof" class="block text-sm font-bold text-[#2C4A3B] mb-2"><span class="lang-id">Unggah Bukti Transfer</span><span class="lang-en">Upload Payment Proof</span> <span class="text-[#D97757]">*</span></label>
                             <input type="file" id="paymentProof" accept="image/*,.heic,.heif" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all bg-white text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E5E0D8] file:text-[#2C4A3B] hover:file:bg-gray-300 cursor-pointer">
