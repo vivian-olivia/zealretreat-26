@@ -39,7 +39,7 @@ function renderRegister() {
                                     pattern="^62[0-9]{8,13}$"
                                     inputmode="numeric"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
-                                <p class="text-xs text-[#666666] mt-1"><span class="lang-en">Must start with 62 (e.g. 6281234567890)</span><span class="lang-id">Harus diawali 62 (contoh: 6281234567890)</span></p>
+                                <p id="phone-hint" class="text-xs text-[#666666] mt-1"><span class="lang-en">Must start with 62 (e.g. 6281234567890)</span><span class="lang-id">Harus diawali 62 (contoh: 6281234567890)</span></p>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -103,7 +103,7 @@ function renderRegister() {
                                     pattern="^62[0-9]{8,13}$"
                                     inputmode="numeric"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
-                                <p class="text-xs text-[#666666] mt-1"><span class="lang-en">Must start with 62 (e.g. 6281234567890)</span><span class="lang-id">Harus diawali 62 (contoh: 6281234567890)</span></p>
+                                <p id="emerg-phone-hint" class="text-xs text-[#666666] mt-1"><span class="lang-en">Must start with 62 (e.g. 6281234567890)</span><span class="lang-id">Harus diawali 62 (contoh: 6281234567890)</span></p>
                             </div>
                         </div>
                         <div class="mt-6">

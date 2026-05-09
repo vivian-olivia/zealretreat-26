@@ -104,6 +104,25 @@ function initForm() {
         return /^62[0-9]{8,13}$/.test(value);
     }
 
+    function attachLivePhoneValidation(inputId, hintId) {
+        const input = document.getElementById(inputId);
+        const hint  = document.getElementById(hintId);
+        if (!input || !hint) return;
+        input.addEventListener('input', () => {
+            const val = input.value;
+            const invalid = val.length > 0 && !val.startsWith('62');
+            input.classList.toggle('border-red-500', invalid);
+            input.classList.toggle('ring-2',          invalid);
+            input.classList.toggle('ring-red-500',    invalid);
+            input.classList.toggle('border-gray-300', !invalid);
+            hint.classList.toggle('text-red-500',  invalid);
+            hint.classList.toggle('text-[#666666]', !invalid);
+        });
+    }
+
+    attachLivePhoneValidation('phone', 'phone-hint');
+    attachLivePhoneValidation('emergContactPhone', 'emerg-phone-hint');
+
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
