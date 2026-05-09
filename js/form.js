@@ -186,13 +186,11 @@ function initForm() {
             fetch(`${APPS_SCRIPT_URL}?${qs}`, { mode: 'no-cors' }).catch(() => {});
         }
 
-        // Send image to Drive via POST — requires redeployed Apps Script with doPost
+        // Send image to Drive via POST using XHR — fetch no-cors converts POST→GET on Apps Script redirect
         if (APPS_SCRIPT_URL && imageBase64) {
-            fetch(APPS_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify({ phone: formData.phone, fullName: formData.fullName, imageBase64, imageMime, imageExt }),
-            }).catch(() => {});
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', APPS_SCRIPT_URL, true);
+            xhr.send(JSON.stringify({ phone: formData.phone, fullName: formData.fullName, imageBase64, imageMime, imageExt }));
         }
 
         // Small delay to show processing state

@@ -107,7 +107,7 @@ function doPost(e) {
             var phoneCol = HEADERS.indexOf('Phone/WhatsApp') + 1;
             var proofCol = HEADERS.indexOf('Payment Proof') + 1;
             for (var i = lastRow; i >= 2; i--) {
-                if (sheet.getRange(i, phoneCol).getValue() === data.phone) {
+                if (String(sheet.getRange(i, phoneCol).getValue()) === String(data.phone)) {
                     sheet.getRange(i, proofCol).setValue(fileUrl);
                     break;
                 }
