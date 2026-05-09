@@ -12,12 +12,12 @@ function renderPricing() {
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto gsap-stagger-container items-stretch">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto gsap-stagger-container items-stretch px-2">
 
                 <!-- Retreat Fee Card -->
-                <div class="gsap-stagger-item relative transform transition-all duration-300 hover:-translate-y-2 flex flex-col" style="filter: drop-shadow(0 20px 40px rgba(44,74,59,0.25));">
+                <div class="gsap-stagger-item relative transform transition-all duration-300 hover:-translate-y-2 flex flex-col">
                     <div class="absolute -inset-0.5 bg-gradient-to-br from-[#2C4A3B] to-[#D97757] rounded-3xl opacity-50 blur-sm"></div>
-                    <div class="relative bg-white rounded-3xl overflow-hidden flex flex-col flex-1">
+                    <div class="relative bg-white rounded-3xl overflow-hidden flex flex-col flex-1 shadow-xl">
                         <div class="h-2 w-full bg-gradient-to-r from-[#2C4A3B] to-[#D97757]"></div>
                         <div class="p-8 pt-10 flex flex-col flex-1">
                             <h3 class="font-heading text-2xl font-bold text-[#2C4A3B] mb-1">

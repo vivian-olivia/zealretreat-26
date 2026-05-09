@@ -1,4 +1,4 @@
-// Paste your deployed Google Apps Script Web App URL here.
+﻿// Paste your deployed Google Apps Script Web App URL here.
 // See scripts/google-apps-script.js for setup instructions.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzDKnOc_xewwZi7dZfbGwSOgzammSCdTu_nsQDzzHepCPmk_-5aiu2ATu-QPQNGe2TS/exec';
 
@@ -75,12 +75,10 @@ function initForm() {
             const val  = paymentTypeSelect.value;
             if (val === 'full') {
                 amountValue.textContent = 'Rp 500.000';
-                amountNote.textContent  = isId ? 'Pembayaran lunas' : 'Full payment';
+                amountNote.textContent  = '';
             } else if (val === 'dp') {
                 amountValue.textContent = 'Rp 250.000';
-                amountNote.textContent  = isId
-                    ? 'DP 50% sekarang, sisa Rp 250.000 sesuai kesepakatan'
-                    : '50% deposit now, remaining Rp 250,000 as agreed';
+                amountNote.textContent  = '';
             }
             amountDisplay.classList.remove('hidden');
         });
