@@ -67,7 +67,7 @@ function doGet(e) {
             data.emergencyPhone    || '',
             data.notes             || '',
             paymentTypeLabel(data.paymentType),
-            ''  // Payment Proof — filled in by doPost once image arrives
+            data.imageUrl          || ''
         ]);
 
         return ContentService

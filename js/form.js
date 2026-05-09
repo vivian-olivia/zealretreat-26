@@ -1,6 +1,7 @@
-﻿// Paste your deployed Google Apps Script Web App URL here.
+﻿﻿// Paste your deployed Google Apps Script Web App URL here.
 // See scripts/google-apps-script.js for setup instructions.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzDKnOc_xewwZi7dZfbGwSOgzammSCdTu_nsQDzzHepCPmk_-5aiu2ATu-QPQNGe2TS/exec';
+const IMGBB_API_KEY    = ''; // paste your ImgBB API key here — imgbb.com/account → API
 
 function initForm() {
     const form           = document.getElementById('registration-form');
@@ -159,50 +160,35 @@ function initForm() {
             paymentType:       document.getElementById('paymentType').value,
         };
 
-        // Read payment proof as base64 for Drive upload
-        let imageBase64 = '', imageMime = '', imageExt = '';
+        // Upload payment proof to ImgBB, get a public URL
+        let imageUrl = '';
         const proofFile = proofInput ? proofInput.files[0] : null;
-        if (proofFile) {
-            const isHeic = proofFile.type === 'image/heic' || proofFile.type === 'image/heif'
-                || proofFile.name.toLowerCase().endsWith('.heic')
-                || proofFile.name.toLowerCase().endsWith('.heif');
+        if (proofFile && IMGBB_API_KEY) {
             try {
+                const isHeic = proofFile.type === 'image/heic' || proofFile.type === 'image/heif'
+                    || proofFile.name.toLowerCase().endsWith('.heic')
+                    || proofFile.name.toLowerCase().endsWith('.heif');
                 const blob = isHeic
                     ? await heic2any({ blob: proofFile, toType: 'image/jpeg', quality: 0.85 })
                     : proofFile;
-                imageMime = isHeic ? 'image/jpeg' : (proofFile.type || 'image/jpeg');
-                imageExt  = isHeic ? 'jpg' : proofFile.name.split('.').pop().toLowerCase();
-                imageBase64 = await new Promise(resolve => {
+                const base64 = await new Promise(resolve => {
                     const r = new FileReader();
                     r.onload = ev => resolve(ev.target.result.split(',')[1]);
                     r.readAsDataURL(blob);
                 });
-            } catch { /* file read failed — send without image */ }
+                const fd = new FormData();
+                fd.append('key', IMGBB_API_KEY);
+                fd.append('image', base64);
+                const res  = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body: fd });
+                const json = await res.json();
+                imageUrl = json.data?.url || '';
+            } catch { /* image upload failed — continue without it */ }
         }
 
-        // Submit all data (text + image) via hidden iframe form POST.
-        // fetch/XHR convert POST->GET on Apps Script's redirect; a real form submission does not.
+        // Send all form data + image URL to Apps Script via GET (POST is unreliable with Apps Script redirects)
         if (APPS_SCRIPT_URL) {
-            const allData = Object.assign({}, formData, { imageBase64, imageMime, imageExt });
-            const iframe  = document.createElement('iframe');
-            iframe.name   = 'submit-frame';
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-            const form   = document.createElement('form');
-            form.method  = 'POST';
-            form.action  = APPS_SCRIPT_URL;
-            form.target  = 'submit-frame';
-            form.style.display = 'none';
-            const input  = document.createElement('input');
-            input.type   = 'hidden';
-            input.name   = 'payload';
-            input.value  = JSON.stringify(allData);
-            form.appendChild(input);
-            document.body.appendChild(form);
-            form.submit();
-            setTimeout(() => {
-                try { document.body.removeChild(form); document.body.removeChild(iframe); } catch (_) {}
-            }, 60000);
+            const qs = new URLSearchParams({ payload: JSON.stringify(Object.assign({}, formData, { imageUrl })) });
+            fetch(APPS_SCRIPT_URL + '?' + qs.toString(), { mode: 'no-cors' }).catch(() => {});
         }
 
         // Small delay to show processing state
