@@ -40,8 +40,8 @@ function renderEventInfo() {
                         <div class="w-14 h-14 rounded-2xl bg-[#FFF5F0] flex items-center justify-center text-3xl mb-5 mx-auto">&#128101;</div>
                         <h4 class="font-heading font-bold text-lg text-[#2C4A3B] mb-2"><span class="lang-id">Kriteria Peserta</span><span class="lang-en">Eligibility</span></h4>
                         <p class="text-[#4A4A4A] text-sm leading-relaxed">
-                            <span class="lang-id">Khusus dewasa muda.<br>Usia 17&ndash;25 tahun.</span>
-                            <span class="lang-en">Exclusive to young adults.<br>Must be 17&ndash;25 years old.</span>
+                            <span class="lang-id">Khusus dewasa muda.<br>Usia 17&ndash;27 tahun.</span>
+                            <span class="lang-en">Exclusive to young adults.<br>Must be 17&ndash;27 years old.</span>
                         </p>
                     </div>
                 </div>

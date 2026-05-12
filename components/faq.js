@@ -19,8 +19,8 @@ function renderFaq() {
                     </button>
                     <div class="accordion-content px-6 bg-white">
                         <p class="text-[#4A4A4A] pb-2">
-                            <span class="lang-id">Retreat ini terbuka untuk semua dewasa muda berusia 17 hingga 25 tahun. Baik kamu yang sudah lama di gereja maupun yang baru mulai menjelajahi iman, kamu sangat diterima di sini.</span>
-                            <span class="lang-en">The retreat is open to all young adults aged 17 to 25. Whether you've been part of a church your whole life or are just exploring faith, you are welcome here.</span>
+                            <span class="lang-id">Retreat ini terbuka untuk semua dewasa muda berusia 17 hingga 27 tahun. Baik kamu yang sudah lama di gereja maupun yang baru mulai menjelajahi iman, kamu sangat diterima di sini.</span>
+                            <span class="lang-en">The retreat is open to all young adults aged 17 to 27. Whether you've been part of a church your whole life or are just exploring faith, you are welcome here.</span>
                         </p>
                     </div>
                 </div>

@@ -36,7 +36,7 @@ function renderPricing() {
                                 <li class="flex items-center gap-3 text-[#4A4A4A] text-sm font-medium"><span class="w-5 h-5 rounded-full bg-[#2C4A3B] flex items-center justify-center text-white text-xs flex-shrink-0">&#10003;</span> <span class="lang-id">Transportasi Disediakan</span><span class="lang-en">Transportation Provided</span></li>
                             </ul>
                             <div class="w-full bg-[#FAF8F5] py-3 px-4 rounded-xl border border-[#E5E0D8] text-center mt-auto">
-                                <p class="text-sm text-[#666666] font-bold">&#9201; <span class="lang-id">Pendaftaran ditutup 30 Juni 2026</span><span class="lang-en">Registration closes 30 June 2026</span></p>
+                                <p class="text-sm text-[#666666] font-bold">&#9201; <span class="lang-id">Pendaftaran ditutup 21 Juni 2026</span><span class="lang-en">Registration closes 21 June 2026</span></p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@ function renderPricing() {
                             </li>
                             <li class="flex items-start gap-3 text-[#4A4A4A] text-sm font-medium">
                                 <span class="w-5 h-5 rounded-full bg-[#D97757] flex items-center justify-center text-white text-xs flex-shrink-0 mt-0.5">&#10003;</span>
-                                <span><span class="lang-id">Sisa Rp 250.000 dilunasi sesuai kesepakatan</span><span class="lang-en">Remaining Rp 250,000 settled as agreed</span></span>
+                                <span><span class="lang-id">Sisa Rp 250.000 dilunasi paling lambat <strong>26 Juni 2026</strong></span><span class="lang-en">Remaining Rp 250,000 due by <strong>26 June 2026</strong></span></span>
                             </li>
                         </ul>
                         <div class="bg-[#FAF8F5] rounded-xl p-4 border border-[#E5E0D8] mt-auto">

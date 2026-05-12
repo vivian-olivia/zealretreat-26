@@ -9,7 +9,7 @@ function renderRegister() {
                 <div class="text-center mb-10">
                     <h2 class="font-heading text-4xl font-extrabold text-[#2C4A3B] mb-2"><span class="lang-id">Daftar Sekarang</span><span class="lang-en">Register Now</span></h2>
                     <div class="inline-block bg-red-100 text-red-700 px-4 py-1 rounded-full text-sm font-bold mb-4">
-                        &#9200; <span class="lang-id">Pendaftaran ditutup pada 30 Juni 2026</span><span class="lang-en">Registration closes on June 30, 2026</span>
+                        &#9200; <span class="lang-id">Pendaftaran ditutup pada 21 Juni 2026</span><span class="lang-en">Registration closes on June 21, 2026</span>
                     </div>
                     <p class="text-lg text-[#666666]">
                         <span class="lang-id">Amankan tempatmu untuk HOME! Isi data dirimu di bawah ini.</span>

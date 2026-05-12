@@ -22,8 +22,8 @@ function renderAbout() {
                             <h3 class="font-heading text-2xl font-bold text-[#2C4A3B]"><span class="lang-id">Retreat</span><span class="lang-en">The Retreat</span></h3>
                         </div>
                         <p class="text-base text-[#4A4A4A] leading-relaxed pl-12">
-                            <span class="lang-id">Waktu dan ruang khusus bagi dewasa muda untuk sejenak "jeda" dari kesibukan, mencari Tuhan lebih dalam, dan membangun persahabatan yang berpusat pada Kristus seumur hidup. Terbuka untuk usia 17-25 tahun.</span>
-                            <span class="lang-en">A designated time and space for young adults to hit "pause" on their busy lives, seek God deeply, and build lifelong, Christ-centered friendships. Open to young adults aged 17&ndash;25.</span>
+                            <span class="lang-id">Waktu dan ruang khusus bagi dewasa muda untuk sejenak "jeda" dari kesibukan, mencari Tuhan lebih dalam, dan membangun persahabatan yang berpusat pada Kristus seumur hidup. Terbuka untuk usia 17-27 tahun.</span>
+                            <span class="lang-en">A designated time and space for young adults to hit "pause" on their busy lives, seek God deeply, and build lifelong, Christ-centered friendships. Open to young adults aged 17&ndash;27.</span>
                         </p>
                     </div>
                     <div>

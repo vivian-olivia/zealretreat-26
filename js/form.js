@@ -1,7 +1,7 @@
 ﻿﻿// Paste your deployed Google Apps Script Web App URL here.
 // See scripts/google-apps-script.js for setup instructions.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzDKnOc_xewwZi7dZfbGwSOgzammSCdTu_nsQDzzHepCPmk_-5aiu2ATu-QPQNGe2TS/exec';
-const IMGBB_API_KEY    = ''; // paste your ImgBB API key here — imgbb.com/account → API
+const IMGBB_API_KEY    = 'd7832f64afefce6aae08ec74e9a1cee5'; // paste your ImgBB API key here — imgbb.com/account → API
 
 function initForm() {
     const form           = document.getElementById('registration-form');
@@ -164,6 +164,7 @@ function initForm() {
         let imageUrl = '';
         const proofFile = proofInput ? proofInput.files[0] : null;
         if (proofFile && IMGBB_API_KEY) {
+            console.log('[form] uploading image to ImgBB, file:', proofFile.name, proofFile.size, 'bytes');
             try {
                 const isHeic = proofFile.type === 'image/heic' || proofFile.type === 'image/heif'
                     || proofFile.name.toLowerCase().endsWith('.heic')
@@ -181,13 +182,23 @@ function initForm() {
                 fd.append('image', base64);
                 const res  = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body: fd });
                 const json = await res.json();
+                console.log('[form] ImgBB response:', JSON.stringify(json));
                 imageUrl = json.data?.url || '';
-            } catch { /* image upload failed — continue without it */ }
+                console.log('[form] imageUrl:', imageUrl || '(empty — upload may have failed)');
+            } catch (err) {
+                console.error('[form] ImgBB upload error:', err);
+            }
+        } else if (proofFile && !IMGBB_API_KEY) {
+            console.warn('[form] IMGBB_API_KEY is empty — image not uploaded');
+        } else {
+            console.log('[form] no proof file selected');
         }
 
         // Send all form data + image URL to Apps Script via GET (POST is unreliable with Apps Script redirects)
         if (APPS_SCRIPT_URL) {
-            const qs = new URLSearchParams({ payload: JSON.stringify(Object.assign({}, formData, { imageUrl })) });
+            const payload = JSON.stringify(Object.assign({}, formData, { imageUrl }));
+            console.log('[form] sending to Apps Script, payload:', payload);
+            const qs = new URLSearchParams({ payload });
             fetch(APPS_SCRIPT_URL + '?' + qs.toString(), { mode: 'no-cors' }).catch(() => {});
         }
 
