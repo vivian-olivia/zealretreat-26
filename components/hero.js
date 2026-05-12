@@ -1,7 +1,7 @@
 function renderHero() {
     return `
     <!-- Hero Section -->
-    <section id="home" class="relative pt-28 pb-16 lg:pt-40 lg:pb-20 overflow-hidden flex flex-col justify-center bg-cover bg-center bg-no-repeat min-h-[90vh]" style="background-image: url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+    <section id="home" class="relative pt-28 pb-16 lg:pt-40 lg:pb-20 overflow-hidden flex flex-col justify-center bg-cover bg-center bg-no-repeat min-h-[90vh]" style="background-image: url('assets/bg.png');">
         <div class="absolute inset-0 z-0 bg-gradient-to-b from-[#1A2E24]/85 via-[#1A2E24]/80 to-[#0d1a14]/90"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center gsap-hero-element gsap-hide">
             <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-[#F4A261] text-xs font-bold tracking-widest uppercase mb-6 shadow-lg">
