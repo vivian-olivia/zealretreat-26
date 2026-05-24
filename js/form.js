@@ -1,7 +1,6 @@
 ﻿﻿// Paste your deployed Google Apps Script Web App URL here.
 // See scripts/google-apps-script.js for setup instructions.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzDKnOc_xewwZi7dZfbGwSOgzammSCdTu_nsQDzzHepCPmk_-5aiu2ATu-QPQNGe2TS/exec';
-const IMGBB_API_KEY    = 'd7832f64afefce6aae08ec74e9a1cee5'; // paste your ImgBB API key here — imgbb.com/account → API
 
 function initForm() {
     const form           = document.getElementById('registration-form');
@@ -160,46 +159,50 @@ function initForm() {
             paymentType:       document.getElementById('paymentType').value,
         };
 
-        // Upload payment proof to ImgBB, get a public URL
-        let imageUrl = '';
+        // Read payment proof as base64 for direct Drive upload
+        let imageBase64 = '';
+        let imageMime   = '';
+        let imageExt    = '';
         const proofFile = proofInput ? proofInput.files[0] : null;
-        if (proofFile && IMGBB_API_KEY) {
-            console.log('[form] uploading image to ImgBB, file:', proofFile.name, proofFile.size, 'bytes');
-            try {
-                const isHeic = proofFile.type === 'image/heic' || proofFile.type === 'image/heif'
-                    || proofFile.name.toLowerCase().endsWith('.heic')
-                    || proofFile.name.toLowerCase().endsWith('.heif');
-                const blob = isHeic
-                    ? await heic2any({ blob: proofFile, toType: 'image/jpeg', quality: 0.85 })
-                    : proofFile;
-                const base64 = await new Promise(resolve => {
-                    const r = new FileReader();
-                    r.onload = ev => resolve(ev.target.result.split(',')[1]);
-                    r.readAsDataURL(blob);
-                });
-                const fd = new FormData();
-                fd.append('key', IMGBB_API_KEY);
-                fd.append('image', base64);
-                const res  = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body: fd });
-                const json = await res.json();
-                console.log('[form] ImgBB response:', JSON.stringify(json));
-                imageUrl = json.data?.url || '';
-                console.log('[form] imageUrl:', imageUrl || '(empty — upload may have failed)');
-            } catch (err) {
-                console.error('[form] ImgBB upload error:', err);
-            }
-        } else if (proofFile && !IMGBB_API_KEY) {
-            console.warn('[form] IMGBB_API_KEY is empty — image not uploaded');
-        } else {
-            console.log('[form] no proof file selected');
+        if (proofFile) {
+            const isHeic = proofFile.type === 'image/heic' || proofFile.type === 'image/heif'
+                || proofFile.name.toLowerCase().endsWith('.heic')
+                || proofFile.name.toLowerCase().endsWith('.heif');
+            const blob = isHeic
+                ? await heic2any({ blob: proofFile, toType: 'image/jpeg', quality: 0.85 })
+                : proofFile;
+            imageBase64 = await new Promise(resolve => {
+                const r = new FileReader();
+                r.onload = ev => resolve(ev.target.result.split(',')[1]);
+                r.readAsDataURL(blob instanceof Blob ? blob : proofFile);
+            });
+            imageMime = isHeic ? 'image/jpeg' : (proofFile.type || 'image/jpeg');
+            imageExt  = isHeic ? 'jpg' : (proofFile.name.split('.').pop() || 'jpg');
         }
 
-        // Send all form data + image URL to Apps Script via GET (POST is unreliable with Apps Script redirects)
+        // Send all form data + base64 image to Apps Script via hidden iframe POST
         if (APPS_SCRIPT_URL) {
-            const payload = JSON.stringify(Object.assign({}, formData, { imageUrl }));
-            console.log('[form] sending to Apps Script, payload:', payload);
-            const qs = new URLSearchParams({ payload });
-            fetch(APPS_SCRIPT_URL + '?' + qs.toString(), { mode: 'no-cors' }).catch(() => {});
+            const payload = JSON.stringify(Object.assign({}, formData, { imageBase64, imageMime, imageExt }));
+            const frameName = '_upload_' + Date.now();
+            const iframe = document.createElement('iframe');
+            iframe.name = frameName;
+            iframe.style.cssText = 'display:none;position:absolute;left:-9999px;';
+            document.body.appendChild(iframe);
+            const hiddenForm = document.createElement('form');
+            hiddenForm.method = 'POST';
+            hiddenForm.action = APPS_SCRIPT_URL;
+            hiddenForm.target = frameName;
+            hiddenForm.style.display = 'none';
+            document.body.appendChild(hiddenForm);
+            const payloadInput = document.createElement('input');
+            payloadInput.type  = 'hidden';
+            payloadInput.name  = 'payload';
+            payloadInput.value = payload;
+            hiddenForm.appendChild(payloadInput);
+            hiddenForm.submit();
+            setTimeout(() => {
+                try { document.body.removeChild(iframe); document.body.removeChild(hiddenForm); } catch {}
+            }, 15000);
         }
 
         // Small delay to show processing state

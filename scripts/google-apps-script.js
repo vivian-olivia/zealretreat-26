@@ -92,7 +92,7 @@ function doPost(e) {
         var sheet = getSheet();
 
         // Save image to Drive (non-fatal if it fails)
-        var fileUrl = '';
+        var savedFileName = '';
         try {
             if (data.imageBase64) {
                 var bytes    = Utilities.base64Decode(data.imageBase64);
@@ -101,13 +101,12 @@ function doPost(e) {
                 var fileName = (data.fullName || 'unknown') + '_retreat zeal tgr.' + ext;
                 var blob     = Utilities.newBlob(bytes, mime, fileName);
                 var folder   = DriveApp.getFolderById(DRIVE_FOLDER_ID);
-                var file     = folder.createFile(blob);
-                file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-                fileUrl = file.getUrl();
+                folder.createFile(blob);
+                savedFileName = fileName;
             }
         } catch (imgErr) { /* image upload failed — row still written below */ }
 
-        // Write all data + Drive link to sheet in one go
+        // Write all data + saved filename to sheet in one go
         sheet.appendRow([
             new Date().toLocaleString('id-ID'),
             data.fullName          || '',
@@ -120,11 +119,11 @@ function doPost(e) {
             data.emergencyPhone    || '',
             data.notes             || '',
             paymentTypeLabel(data.paymentType),
-            fileUrl
+            savedFileName
         ]);
 
         return ContentService
-            .createTextOutput(JSON.stringify({ status: 'success', fileUrl: fileUrl }))
+            .createTextOutput(JSON.stringify({ status: 'success' }))
             .setMimeType(ContentService.MimeType.JSON);
 
     } catch (err) {
