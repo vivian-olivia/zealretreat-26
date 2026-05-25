@@ -104,42 +104,150 @@ function initForm() {
         return /^62[0-9]{8,13}$/.test(value);
     }
 
-    function attachLivePhoneValidation(inputId, hintId) {
-        const input = document.getElementById(inputId);
-        const hint  = document.getElementById(hintId);
-        if (!input || !hint) return;
-        input.addEventListener('input', () => {
-            const val = input.value;
-            const invalid = val.length > 0 && !val.startsWith('62');
-            input.classList.toggle('border-red-500', invalid);
-            input.classList.toggle('ring-2',          invalid);
-            input.classList.toggle('ring-red-500',    invalid);
-            input.classList.toggle('border-gray-300', !invalid);
-            hint.classList.toggle('text-red-500',  invalid);
-            hint.classList.toggle('text-[#666666]', !invalid);
+    function showError(errorId, msg) {
+        const el = document.getElementById(errorId);
+        if (!el) return;
+        el.textContent = msg;
+        el.classList.remove('hidden');
+    }
+
+    function clearError(errorId) {
+        const el = document.getElementById(errorId);
+        if (el) el.classList.add('hidden');
+    }
+
+    function markInvalid(field) {
+        field.classList.add('border-red-500', 'ring-2', 'ring-red-500');
+        field.classList.remove('border-gray-300');
+    }
+
+    function markValid(field) {
+        field.classList.remove('border-red-500', 'ring-2', 'ring-red-500');
+        field.classList.add('border-gray-300');
+    }
+
+    function attachClearOnInput(fieldId, errorId) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+        const evt = field.tagName === 'SELECT' || field.type === 'file' ? 'change' : 'input';
+        field.addEventListener(evt, () => {
+            markValid(field);
+            clearError(errorId);
         });
     }
 
-    attachLivePhoneValidation('phone', 'phone-hint');
-    attachLivePhoneValidation('emergContactPhone', 'emerg-phone-hint');
+    attachClearOnInput('fullName',            'fullName-error');
+    attachClearOnInput('phone',               'phone-error');
+    attachClearOnInput('uniName',             'uniName-error');
+    attachClearOnInput('status',              'status-error');
+    attachClearOnInput('transport',           'transport-error');
+    attachClearOnInput('emergContactName',    'emergContactName-error');
+    attachClearOnInput('emergContactRelation','emergContactRelation-error');
+    attachClearOnInput('emergContactPhone',   'emergContactPhone-error');
+    attachClearOnInput('paymentType',         'paymentType-error');
+    attachClearOnInput('paymentProof',        'paymentProof-error');
+
+    function validateForm(isId) {
+        let valid = true;
+        let firstInvalidField = null;
+
+        function checkText(fieldId, errorId, msgId, msgEn) {
+            const field = document.getElementById(fieldId);
+            if (!field) return;
+            if (!field.value.trim()) {
+                markInvalid(field);
+                showError(errorId, isId ? msgId : msgEn);
+                if (!firstInvalidField) firstInvalidField = field;
+                valid = false;
+            } else {
+                markValid(field);
+                clearError(errorId);
+            }
+        }
+
+        function checkSelect(fieldId, errorId, msgId, msgEn) {
+            const field = document.getElementById(fieldId);
+            if (!field) return;
+            if (!field.value) {
+                markInvalid(field);
+                showError(errorId, isId ? msgId : msgEn);
+                if (!firstInvalidField) firstInvalidField = field;
+                valid = false;
+            } else {
+                markValid(field);
+                clearError(errorId);
+            }
+        }
+
+        checkText('fullName',             'fullName-error',             'Nama lengkap wajib diisi.',           'Full name is required.');
+        checkText('uniName',              'uniName-error',              'Nama universitas wajib diisi.',        'University name is required.');
+        checkSelect('status',             'status-error',               'Status wajib dipilih.',                'Please select a status.');
+        checkSelect('transport',          'transport-error',            'Preferensi transportasi wajib dipilih.','Please select a transportation preference.');
+        checkText('emergContactName',     'emergContactName-error',     'Nama kontak darurat wajib diisi.',    'Emergency contact name is required.');
+        checkText('emergContactRelation', 'emergContactRelation-error', 'Hubungan wajib diisi.',               'Relation is required.');
+        checkSelect('paymentType',        'paymentType-error',          'Metode pembayaran wajib dipilih.',    'Please select a payment method.');
+
+        // Phone with format check
+        const phoneField = document.getElementById('phone');
+        const phoneVal   = phoneField ? phoneField.value : '';
+        if (!phoneVal.trim()) {
+            markInvalid(phoneField);
+            showError('phone-error', isId ? 'Nomor WhatsApp wajib diisi.' : 'WhatsApp number is required.');
+            if (!firstInvalidField) firstInvalidField = phoneField;
+            valid = false;
+        } else if (!validatePhone(phoneVal)) {
+            markInvalid(phoneField);
+            showError('phone-error', isId ? 'Format salah. Harus diawali 62 (contoh: 6281234567890).' : 'Wrong format. Must start with 62 (e.g. 6281234567890).');
+            if (!firstInvalidField) firstInvalidField = phoneField;
+            valid = false;
+        } else {
+            markValid(phoneField);
+            clearError('phone-error');
+        }
+
+        // Emergency phone with format check
+        const emergField = document.getElementById('emergContactPhone');
+        const emergVal   = emergField ? emergField.value : '';
+        if (!emergVal.trim()) {
+            markInvalid(emergField);
+            showError('emergContactPhone-error', isId ? 'No. HP darurat wajib diisi.' : 'Emergency phone is required.');
+            if (!firstInvalidField) firstInvalidField = emergField;
+            valid = false;
+        } else if (!validatePhone(emergVal)) {
+            markInvalid(emergField);
+            showError('emergContactPhone-error', isId ? 'Format salah. Harus diawali 62 (contoh: 6281234567890).' : 'Wrong format. Must start with 62 (e.g. 6281234567890).');
+            if (!firstInvalidField) firstInvalidField = emergField;
+            valid = false;
+        } else {
+            markValid(emergField);
+            clearError('emergContactPhone-error');
+        }
+
+        // Payment proof file
+        const proofField = document.getElementById('paymentProof');
+        if (!proofField || !proofField.files[0]) {
+            if (proofField) markInvalid(proofField);
+            showError('paymentProof-error', isId ? 'Bukti transfer wajib diunggah.' : 'Payment proof is required.');
+            if (!firstInvalidField) firstInvalidField = proofField;
+            valid = false;
+        } else {
+            markValid(proofField);
+            clearError('paymentProof-error');
+        }
+
+        if (!valid && firstInvalidField) {
+            firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        return valid;
+    }
 
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
         const isId = document.body.getAttribute('data-lang') === 'id';
 
-        const phoneVal = document.getElementById('phone').value;
-        const emergVal = document.getElementById('emergContactPhone').value;
-        if (!validatePhone(phoneVal)) {
-            alert(isId ? 'Nomor WhatsApp harus diawali dengan 62 (contoh: 6281234567890).' : 'WhatsApp number must start with 62 (e.g. 6281234567890).');
-            document.getElementById('phone').focus();
-            return;
-        }
-        if (!validatePhone(emergVal)) {
-            alert(isId ? 'No. HP Darurat harus diawali dengan 62 (contoh: 6281234567890).' : 'Emergency phone must start with 62 (e.g. 6281234567890).');
-            document.getElementById('emergContactPhone').focus();
-            return;
-        }
+        if (!validateForm(isId)) return;
 
         submitBtn.innerHTML = isId ? 'Memproses...' : 'Processing...';
         submitBtn.disabled = true;

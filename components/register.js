@@ -17,7 +17,7 @@ function renderRegister() {
                     </p>
                 </div>
 
-                <form id="registration-form" class="space-y-8">
+                <form id="registration-form" novalidate class="space-y-8">
                     <!-- Personal Info -->
                     <div>
                         <h4 class="font-heading font-bold text-xl text-[#D97757] mb-4 border-b border-gray-100 pb-2"><span class="lang-id">Informasi Pribadi</span><span class="lang-en">Personal Information</span></h4>
@@ -29,6 +29,7 @@ function renderRegister() {
                                     data-placeholder-id="Nama lengkapmu"
                                     data-placeholder-en="Your full name"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
+                                <p id="fullName-error" class="hidden text-red-500 text-xs mt-1"></p>
                             </div>
                             <div>
                                 <label for="phone" class="block text-sm font-bold text-[#2C4A3B] mb-2">Phone / WhatsApp <span class="text-[#D97757]">*</span></label>
@@ -39,6 +40,7 @@ function renderRegister() {
                                     pattern="^62[0-9]{8,13}$"
                                     inputmode="numeric"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
+                                <p id="phone-error" class="hidden text-red-500 text-xs mt-1"></p>
                                 <p id="phone-hint" class="text-xs text-[#666666] mt-1"><span class="lang-en">Must start with 62 (e.g. 6281234567890)</span><span class="lang-id">Harus diawali 62 (contoh: 6281234567890)</span></p>
                             </div>
                         </div>
@@ -50,6 +52,7 @@ function renderRegister() {
                                     data-placeholder-id="Isi '-' jika sudah tidak kuliah"
                                     data-placeholder-en="Fill '-' if not in university"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
+                                <p id="uniName-error" class="hidden text-red-500 text-xs mt-1"></p>
                             </div>
                             <div>
                                 <label for="status" class="block text-sm font-bold text-[#2C4A3B] mb-2">Status <span class="text-[#D97757]">*</span></label>
@@ -59,6 +62,7 @@ function renderRegister() {
                                     <option value="bible_study" data-label-id="Sedang Belajar Alkitab" data-label-en="Currently in Bible Study">Sedang Belajar Alkitab</option>
                                     <option value="others" data-label-id="Lainnya" data-label-en="Others">Lainnya</option>
                                 </select>
+                                <p id="status-error" class="hidden text-red-500 text-xs mt-1"></p>
                             </div>
                         </div>
                     </div>
@@ -74,6 +78,7 @@ function renderRegister() {
                                     <option value="sendiri" data-label-id="Berangkat Sendiri" data-label-en="Own Transport">Berangkat Sendiri</option>
                                     <option value="bareng" data-label-id="Bareng (Gunakan Transportasi Panitia)" data-label-en="Join Group Transport">Bareng (Gunakan Transportasi Panitia)</option>
                                 </select>
+                                <p id="transport-error" class="hidden text-red-500 text-xs mt-1"></p>
                                 <p class="text-xs mt-2 text-[#666666] font-medium"><span class="lang-id">Titik kumpul keberangkatan (bareng) ada di</span><span class="lang-en">Meeting point for group transport is at</span> <a href="https://maps.app.goo.gl/S9YrgLNDcNwCJqu78" target="_blank" class="text-[#D97757] underline hover:text-[#2C4A3B]">GKDI Tangerang</a>.</p>
                             </div>
                         </div>
@@ -85,6 +90,7 @@ function renderRegister() {
                                     data-placeholder-id="Nama lengkap"
                                     data-placeholder-en="Full name"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
+                                <p id="emergContactName-error" class="hidden text-red-500 text-xs mt-1"></p>
                             </div>
                             <div>
                                 <label for="emergContactRelation" class="block text-sm font-bold text-[#2C4A3B] mb-2"><span class="lang-id">Hubungan</span><span class="lang-en">Relation</span> <span class="text-[#D97757]">*</span></label>
@@ -93,6 +99,7 @@ function renderRegister() {
                                     data-placeholder-id="Contoh: Ibu, Kakak"
                                     data-placeholder-en="e.g. Mother, Sibling"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
+                                <p id="emergContactRelation-error" class="hidden text-red-500 text-xs mt-1"></p>
                             </div>
                             <div>
                                 <label for="emergContactPhone" class="block text-sm font-bold text-[#2C4A3B] mb-2"><span class="lang-id">No. HP Darurat</span><span class="lang-en">Emergency Phone</span> <span class="text-[#D97757]">*</span></label>
@@ -103,6 +110,7 @@ function renderRegister() {
                                     pattern="^62[0-9]{8,13}$"
                                     inputmode="numeric"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all">
+                                <p id="emergContactPhone-error" class="hidden text-red-500 text-xs mt-1"></p>
                                 <p id="emerg-phone-hint" class="text-xs text-[#666666] mt-1"><span class="lang-en">Must start with 62 (e.g. 6281234567890)</span><span class="lang-id">Harus diawali 62 (contoh: 6281234567890)</span></p>
                             </div>
                         </div>
@@ -130,6 +138,7 @@ function renderRegister() {
                                 <option value="full" data-label-id="Lunas — Rp 500.000" data-label-en="Full Payment — Rp 500,000">Lunas — Rp 500.000</option>
                                 <option value="dp" data-label-id="DP 50% — Rp 250.000" data-label-en="Down Payment 50% — Rp 250,000">DP 50% — Rp 250.000</option>
                             </select>
+                            <p id="paymentType-error" class="hidden text-red-500 text-xs mt-1"></p>
                         </div>
 
                         <!-- Amount to Pay (shown after selection) -->
@@ -166,6 +175,7 @@ function renderRegister() {
                         <div>
                             <label for="paymentProof" class="block text-sm font-bold text-[#2C4A3B] mb-2"><span class="lang-id">Unggah Bukti Transfer</span><span class="lang-en">Upload Payment Proof</span> <span class="text-[#D97757]">*</span></label>
                             <input type="file" id="paymentProof" accept="image/*,.heic,.heif" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D97757] focus:border-transparent outline-none transition-all bg-white text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E5E0D8] file:text-[#2C4A3B] hover:file:bg-gray-300 cursor-pointer">
+                            <p id="paymentProof-error" class="hidden text-red-500 text-xs mt-1"></p>
                             <p class="text-xs mt-1 text-[#666666]"><span class="lang-id">Format: JPG, PNG, HEIC</span><span class="lang-en">Format: JPG, PNG, HEIC</span></p>
                             <!-- Image preview -->
                             <div id="payment-preview-wrap" class="hidden mt-3 relative w-fit">
